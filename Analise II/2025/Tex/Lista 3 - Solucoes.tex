@@ -1,0 +1,333 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathabx}
+\usepackage{accents}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+
+\lhead{Analise II}
+\rhead{Solução - Lista 3}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE Analise II\\
+    \LARGE Lista 3\\[0.5em]
+    
+    \large Professor: Paulo Klinger\par
+    \large Monitor: André Lelis\par
+    
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+
+\question[]Seja $\ell^\infty$ o conjunto das sequências limitadas reais. Para $x, y \in \ell^\infty$ definimos
+\[ |x - y|_\infty = \sup \{|x_n - y_n| : n \geq 1\}. \]
+Verifique que $(\ell^\infty, |\cdot|_\infty)$ é um espaço normado.
+
+\begin{solution}$\ell^{\infty}\subset \ell^{0}$
+
+Seja $x,y \in \ell^{\infty}$ e $\lambda \in \mathbb{R}$. $x+\lambda y = (x_{n}+\lambda y_{n}) = (x_{n}) + \lambda (y_{n})$. Note que  como $x, y \in \ell^{\infty}$, existe $M$ tal que $\sup x_{n} < M$ e $\lambda \sup y_{n} < \lambda M$.
+
+Logo, $x + \lambda y \in \ell^{\infty}$, concluindo que é subespaço.
+
+Agora temos que provar que é norma:
+
+- $||x|| = 0 \iff x = \overline{0}$: Seja $x \in \ell^{\infty}$ tal que $||x||=0$, logo $sup \{|x_{n}|: n\geq 1\} = 0$ . Portanto, $|x_{n}| \leq 0 \forall n$. Mas $|x_{n}| \geq 0 \forall $. Daí, $x_{n} = 0 \forall n$.
+
+- $||\alpha x||_{\infty} = |\alpha| ||x||_{\infty}$: Temos que $||\alpha x|| = \sup \{|\alpha x_{n}|\} = |\alpha| \sup \{|x_{n}|\} = |\alpha| ||x||$
+
+- $||x+y||_{\infty} \leq ||x||_{\infty} + ||y||_{\infty}$: $||x+y|| = \sup \{|x_{n}+y_{n}| : n\geq 1\}$. Sabemos que $|x_{n}+y_{n}| \leq |x_{n}|+|y_{n}| \leq ||x|| + ||y||$. Portanto, $||x+y|| \leq ||x||+||y||$
+
+\end{solution}
+
+\question[]Demonstre que $\ell^\infty$ não é separável.
+\textbf{Sugestão:} Considere $S = \{0, 1\}^\mathbb{N} \subset \ell^\infty$ e note que se $x \neq x'$ estão em $S$, $|x - x'|_\infty = 1$.
+
+\begin{solution}Relembre que $X$ é separável $\iff$ existe $Y \subset X$ enumerável tal que $\overline{Y} = X$.
+
+$\overline{Y} = X$ siginifica que $Y$ é denso em $X$, ou seja, dado $x \in X$ para toda $B[x,r]$, existe algum $y \in Y$ tal que $y \in B[x,r]$.
+
+Vamos usar a sugestão para resolver o exercício. O primeiro ponto é entender o que $S$. $S$ é o conjunto das sequencias que os elementos são somente $0$ ou $1$. 
+
+O segundo ponto é notar que $S$ é não-enumerável:
+
+Suponha que $S$ seja enumerável, então podemos escrever $S = \{x_{1},\ldots,x_{n}\ldots \}$ para alguma enumeração. Considere o elemento $x = (a_{1},\ldots, a_{n},\ldots) \in S$ tal que $a_{1} \neq x_{1}[1]$ e de modo geral $a_{n} \neq x_{n}[n]$ onde $x_{n}[n]$ é o $n-esimo$ elemento da sequência $x_{n}$. É claro que $x \notin \{x_{1},\ldots, x_{n},\ldots \}$ Portanto, $S$ não é enumerável. (Note que esse argumento é exatamente o argumento da diagonal de Cantor! Não estamos usando nenhum "truque" novo).
+
+Agora que $S$ é não-enumerável, vemos que $S$ não pode ser nosso candidato a $Y$. Então qual utilidade de $S$?
+
+Ora, sabemos que se $f: S \to A$ é injetiva, então $A$ é não-enumerável.
+
+Então, nossa estratégia vai ser construir tal $f$ para qualquer candidato a $Y$.
+
+Suponhamos que $Y$ é denso em $\ell^{\infty}$. Dado $s \in S$, então pela definição de ser denso para toda bola aberta centrada em $s$ existe um elemento de $y \in Y$ que também pertence a essa bola. Como $|s-s'|_{\infty} = 1 $ para todo $s' \neq s \in S$, então basta tomar $r < 1$, por exemplo, $r =\frac{1}{2}$ e teremos que $B[s, 1/2] \cap S = \{s \}$ e existe $y_{s} \in Y\cap B[s,\frac{1}{2}]$.
+
+Vamos construir a $f: S \to Y$ injetiva que queremos. Como vimos que existe $y_{s}$ ele é o candidato obvio para $f(s)$. Então agora temos que mostrar que $y_{s} \neq y_{s'}$ para $s \neq s'$.
+
+Isso é o mesmo que mostrar que $B[s,1/2 ] \cap B[s',1/2] = \emptyset$
+
+Suponhamos então que $y_{s} \in B[s,1/2 ] \cap B[s',1/2]$, daí $||s-s'|| \leq ||s - y_{s}|| + ||y_{s} - s'|| < 1/2 + 1/2 = 1$.
+
+Absurdo, pois vimos que $||s-s'|| = 1$.
+
+Logo, $f: S \to Y$ com $f(s) = y_{s}$ é injetiva, portanto $Y$ é não-enumerável.
+
+
+ \end{solution}
+
+\question[]Seja $Y = \{x \in \ell^\infty : \exists n \geq 1, \forall m \geq n, x_m = 0\}$. Então $Y$ é um subespaço separável de $\ell^\infty$.
+
+\begin{solution}$Y$ é formado por sequencias dessa forma $(x_{1},\ldots,x_{n}, 0,\ldots, 0, \ldots)$. Ou seja, existe $n$ que a partir dele todos os elementos da sequência são $0$.
+
+Queremos achar $X$ enumerável e denso.
+
+Sempre que estamos em $\mathbb{R}^{n}$, $\mathbb{Q}^{n}$ é denso. Então, sempre o primeiro candidato natural que pensamos é $\mathbb{Q}^{n}$ em $\mathbb{R}^{n}$.
+
+As sequencias $(x_{1},\ldots,x_{n}, 0,\ldots, 0, \ldots)$ dessa forma lembram $\mathbb{R}^{n}$. Mais do que isso note que podemos definir $(x_{1},\ldots,x_{n}, 0,\ldots, 0, \ldots) \to (x_{1},\ldots,x_{n}) \in \mathbb{R}^{n}$
+
+Defininamos então, $Y_{n} = \{(x_{i}) | x_{k} = 0 \forall k\geq n\}$
+
+$f_{n}: Y_{n} \to \mathbb{R}^{n}$ como acima é injetiva. Então, o candidato para ser denso nesse conjunto $X_{n}$ é $X_{n} = Y_{n} \cap \mathbb{Q}^{n}\times 0 ^{\infty}$.
+
+$X_{n}$ é denso em $Y_{n}$ e $X_{n}$ é enumerável por ser injetiva em um conjunto enumerável $\mathbb{Q}^{n}$.
+
+Definimos $X = \cup_{n \in \mathbb{N}} X_{n}$. Daí, $X$ é enumerável e denso em $Y$.
+
+ \end{solution}
+
+\question[] Seja $X$ um conjunto não-vazio e $F = \{f : X \to \mathbb{R} : f \text{ é limitada}\}$. Então
+\[ |f - g|_\infty = \sup \{|f(x) - g(x)| : x \in X\} \]
+é uma norma (denominada de norma do sup ou norma da convergência uniforme)
+
+\begin{solution} - $||f|| = 0 \iff f = 0$: Suponha $f\neq 0$, então existe $y$ tal que $f(y) = z \neq 0$. Dai, $|f(y)| > 0$. Portanto, $\sup f > 0$.
+
+- $||\alpha f|| = |\alpha| ||f||:$ $||\alpha f|| = \sup |\alpha f(x)| = |\alpha| \sup |f(x)| = |\alpha| ||f||$.
+
+- $||g+\alpha f|| \leq ||g|| + |\alpha| ||f||:$ Por definição, $||g+\\alpha f|| = \sup |g(x)+\alpha f(x)|$, mas $|g(x)+\alpha f(x)| \leq |g(x) +|\alpha| |f(x)| \leq ||g|| + |\alpha | ||f||$.
+ 
+ \end{solution}
+
+\question[] Seja $\ell^2 = \{(x_n)_{n=1}^\infty : x_n \in \mathbb{R}, \sum_{n=1}^\infty x_n^2 < \infty\}$. Então verifique que
+\[ |x|_2 = \sqrt{\sum_{n=1}^\infty x_n^2} \]
+é uma norma obtida a partir do produto interno, $\langle x, y \rangle = \sum_{n=1}^\infty x_n y_n$.
+
+\question[] Seja $\ell^1 = \{(x_n)_{n=1}^\infty : \sum_{n=1}^\infty |x_n| < \infty\}$. A função
+\[ |x|_1 = \sum_{n=1}^\infty |x_n| \]
+é uma norma em $\ell^1$.
+
+\question[] Demonstre que $\ell^1$ e $\ell^2$ são separáveis.
+
+\begin{solution} Nos espacos de sequencias de limitadas $\ell^{\infty}$, nós aprendemos no exercício 3 um conjunto separável. E vimos uma "inspiração para fazer isso".
+
+Vamos tentar usar a mesma ideia aqui...
+
+Defina $X_{n} = \{x\in \ell^{p}|x_{m} \in \mathbb{Q}, x_{m} = 0 \forall m >n\}$
+
+Seja $y \in \ell^{p}$, como converge,dado $\epsilon > 0$, existe $N_{\epsilon}$ tal que $\sum_{n= N_{\epsilon +1}}^{\infty} |y|^{p} < \epsilon^{p}/2$
+
+Como $\mathbb{Q}$, posso escolher $x_{i}, i=1,\ldots, N_{\epsilon}$ tal que $|x_{i} -y_{i}| < (\frac{\epsilon^{p}}{2^{n+1}})^{\frac{1}{p}}$
+
+Definindo $x = (x_{1},\ldots, x_{N_{\epsilon}}, 0, \ldots, 0,\ldots)$, temos $|x-y|^{p} < \epsilon$ e $x \in X_{N_{\epsilon}}$
+
+Portanto, $\cup X_{n}$ é denso e enumerável em $\ell^{p}$.
+
+
+
+
+
+\end{solution}
+
+\question[] Verifique que $[0, 1]$ é fechado mas não é aberto em $\mathbb{R}$.
+
+\begin{solution}\begin{itemize}
+\item $[0,1]$ é fechado. Vamos mostrar que o complementar é aberto. Seja $x \in [0,1]^{C} = Y$. Então, $x < 0$ ou $x>1$. Se $x < 0$, tome $\epsilon = \frac{|x|}{2}$, Então, conseidere $B_{\epsilon}(x)$. 
+
+Se $y \in B_{\epsilon}(x)$, então $y < x + \epsilon < 0$, logo $y \in Y$.
+
+Se $x > 1$, então $x-1 = \epsilon$. Considere $B_{\epsilon/2}(x)$ e $y \in B_{\epsilon/2}(x)$. Segue que $y > 1$. Logo, $y \in Y$.
+
+Portanto, $Y$ é aberto.
+
+\item $[0,1]$ não é aberto. Para todo $\epsilon > 0$, temos que $-\epsilon/2 \in B_{\epsilon}(0)$. Logo, $B_{\epsilon}(0) \nsubseteq [0,1]$ para $\epsilon$. Portanto, não pode ser aberto.
+\end{itemize} \end{solution}
+
+
+\question[] \begin{enumerate}
+    \question[] O conjunto $\left\{\frac{1}{n} : n \in \mathbb{Z} \setminus \{0\}\right\}$ não é fechado nos reais. Entretanto, $\left\{\frac{1}{n} : n \in \mathbb{Z} \setminus \{0\}\right\}$ é fechado em $\mathbb{R} \setminus \{0\}$. Justifique.
+    \question[] Para $U$ aberto não-vazio de $\mathbb{R}$, defina para $x, y \in U$, $x \sim y$ se existir $(a, b) \subset U$ tal que $x, y \in (a, b)$. Demonstre que $\sim$ é uma relação de equivalência e use isto para demonstrar que $U$ é uma união enumerável de intervalos abertos dois a dois disjuntos.
+\end{enumerate}
+    
+    \begin{solution}\begin{enumerate}
+\item Uma das caracterizações de fechado é que contém todos os seus pontos limites. Defina $x_{n} = \frac{1}{n}$. Segue $(x_{n}) \to 0$ e $x_{n}$ pertence ao conjunto para todo $n$, mas $0$ não pertence a este conjunto, logo não pode ser fechado.
+
+Note se que $(x_{n})$ é uma sequencia convergente no conjunto, entõa $x_{n}$ é constante ou converge para $0$. Como $0$ não pertence a $\mathbb{R}\setminus \{0\}$, segue que em $\mathbb{R}\setminus \{0\}$ o conjunto é fechado.
+
+\item Para mostrar que é uma relação de equivalência, tenho que mostrar \begin{enumerate}
+\item Reflexiva: ($y\sim y$): Se $y \in U$, como $U$ é aberto então existe $(a,b)$ tal que $ y\in (a,b) \subset U$. Logo, reflexivo.
+
+\item Simétrico: $y\sim z$, então $z\sim y$.: Trivial, basta usar o mesmo intervalo de $y\sim z$
+
+\item Transitivo: $y\sim z$ e $z\sim w$, então $y\sim w$: Como $y\sim z$ e $z\sim w$, existem $a,b,c,d$ tais que $y,z \in (a,b)$ e $z,w \in (c,d)$
+
+$z \in (a,b)\cap (c,d) = (e,f)$. Se $y,w \in (e,f)$, ok. Se não, então como $(a,b) \cap (c,d) \neq \empty$, então $(a,b) \cup (c,d) = (a,d)$, logo $y,w \in (a,d) \subset U$. Logo, $y\sim w$.
+
+Como $U$ é aberto e $U/ \sim$ forma uma partição, então cada elemento $U$ está associado a um unico intervalo aberto e a união desses intervalos dão $U$. Observe que esses intervalos são disjuntos por $\sim$ ser uma relação de equivalência. Para ver que é enumerável, basta associar cada intervalo a racional pertencente a ele, como os racionais são enumeráveis, segue que os intervalos são enumeráveis.
+\end{enumerate}
+\end{enumerate} \end{solution}
+
+\question[] Demonstre que em um espaço métrico todo conjunto fechado é uma interseção enumerável de conjuntos abertos. E que todo conjunto aberto é uma união enumerável de fechados.
+
+\begin{solution} - $F$ conjunto fechado. Seja $x \in F$ e temos $B(x,\frac{1}{n})$. É claro que $F \subset \cup _{x \in F} B(x,\frac{1}{n})$. Por outro lado, $ x = \cap_{n=1}^{\infty}B(x, \frac{1}{n})$.
+
+Vamos então provar que $F = \cap B_{n}$, onde $B_{n} = \cup_{x \in F} B(x, 1/n)$.
+
+$F\subset \cap B_{n}$ já sabemos, pois $F \subset B_{n}$.
+
+$\cap B_{n}\subset F:$ Seja $y \in \cap B_{n}$, então $y \in B_{n} \forall n$. Então para cada $n$, existe $z_{n}$ tal que $y \in B(z_{n},1/n)$. Logo $(z_{n}) \to y$. Mas $z_{n} \in F$ para todo $n$ e $F$, logo $lim z_{n} \in F$, concluindo que $y \in F$. 
+
+- $B$ conjunto aberto: Como $B$ é aberto, entõa $B^{c}$ é fechado. Mas acabamos de ver que $B^{c} = \cap X_{n}$ abertos. Tomando o complementar novamente, $B = (\cap X_{n})^{c} = \cup X_{n}^{c}$ e cada $X_{n}^{c}$ é fechado.\end{solution}
+
+\question[] Verifique que para espaços normados, $B(x, r) = x + r B(0, 1)$ sempre que $r > 0$.
+
+\begin{solution}$(B(x,r) \subset x + rB(0,1)$ Seja $y \in B(x,r)$, logo $d(x,y) < r$. Podemos escrevr como $|x-y| = r' < r$ . Por outro lado, note que $|x||1-\frac{y}{|x|}| <r $, logo $|1 - z| < \frac{r}{|x|}$ \end{solution}
+
+\question[] Seja $(B, \|\cdot\|)$ um espaço normado. Demonstre que $+ : B \times B \to B$, $+ (x, y) = x + y$, e $\cdot : \mathbb{R} \times B \to B$, $\cdot (\lambda, x) = \lambda x$, são funções contínuas.
+
+\question[] Se $M$ é um subconjunto limitado do espaço normado $B$ e $\lambda_n \to 0$, então para toda sequência $m_n \in M$, $\lim_{n \to \infty} \lambda_n m_n = 0$.
+
+\begin{solution}Como $M$ é limitado, então $(m_{n})_{n=1}^{\infty}$ é limitado. Então existe $L > 0$ tal que $|m_{n} \leq|L|$ para todo $n$.
+
+Logo, $0 \leq |\lambda_{n}m_{n}| \leq \lambda_{n} L$. Daí, tomando o limite, temos que $|\lambda m_{n}| \to 0$. Logo, $\lambda m_{n} \to 0$, pois $|\cdot|$ é norma. \end{solution}
+
+\question[] Seja $Z = X \times Y$ sendo $X$ e $Y$ espaços métricos. Se $U \subset Z$ é aberto e $z = (x, y) \in U$, demonstre que existem $V \subset X$ e $W \subset Y$ abertos tais que $(x, y) \in V \times W \subset Z$.
+
+\question[] Seja $X = \prod_{n=1}^\infty X_n$, sendo $(X_n, d_n)$ métricos, $n \geq 1$. Seja $U \subset X$ aberto da métrica produto e $x = (x_n)_{n=1}^\infty \in U$. Demonstre que existe natural $N$ e bolas abertas, $B(x_n, r_n) \subset X_n$ para $1 \leq n \leq N$, tais que
+\[ x \in \{z \in X : z_n \in B(x_n, r_n), 1 \leq n \leq N\} \subset U. \]
+
+\question[] Seja $E = \prod_{n=1}^\infty E_n$ o produto cartesiano dos espaços normados $(E_n, |\cdot|_n)$, $E_n \neq \{0\}$. Então $E$ não é normado. 
+
+\textbf{Sugestão:} Se $\|\cdot\|$ é uma norma em $E$ que define a mesma topologia que a métrica do produto cartesiano, note que $M = \{x \in E : \|x\| < 1\}$ é aberto e limitado (na norma). Seja $0 \in U \subset M$, $U$ aberto na métrica do produto cartesiano. Pelo exercício anterior, existe $N$ tal que
+\[ \{z \in E : z = (0, \ldots, 0, x_{N+1}, x_{N+2}, \ldots)\} \subset U. \]
+Mas então temos uma contradição com o exercício 13: se $\lambda_n \neq 0$ tende a $0$, podemos, para cada $m > N$, encontrar $x_m^n \in E_m$ tal que $\|\lambda_n x_m^n\|_m = 1$, e, portanto, $z^n = (0, \ldots, x_{N+1}^n, x_{N+2}^n, \ldots) \in M$, mas $d(\lambda_n z^n, 0) > 0$.
+
+\question[] Sejam $\|\cdot\|$ e $\|\cdot\|'$ normas equivalentes em $V$. Demonstre que existe $\epsilon > 0$ tal que, para todo $v \in V$, $\epsilon \|v\| \leq \|v\|' \leq \frac{1}{\epsilon} \|v\|$.
+
+\question[]Para $A\subset B \subset X$, definamos o interior de $A$,
+
+$$\accentset{\circ}{A} = int\ A = \{U\subset A: U\ aberto\}$$
+
+Verifique: \begin{parts}
+\part $A\subset B \subset X \Rightarrow \accentset{\circ}{A} \subset \accentset{\circ}{B}$
+
+\part $\accentset{\circ}{\accentset{\circ}{(A)}} = \accentset{\circ}{A}$
+
+\part $int(A\cap B) = int A \cap int B$
+\part $\cup_{i\in I}int A_{i} \subset int (\cup_{i\in I} A_{i})$ \end{parts}
+
+\begin{solution}\begin{parts} 
+
+\part Seja $a \in \accentset{\circ}{A}$, logo $a \subset A$ e $a$ é aberto. Mas se $a \subset A$, logo $a \subset B$, pois $A\subset B$. E $a$ é aberto em ambos, logo $a  \in \accentset{\circ}{B}$.
+
+\part Seja $a \in \accentset{\circ}{\accentset{\circ}{(A)}}$, logo $a \subset \accentset{\circ}{A}$ e é aberto. Mas $\accentset{\circ}{A} \subset A$, logo $a \in \accentset{\circ}{A}$
+
+Agora note que $\accentset{\circ}{\accentset{\circ}{(A)}} = \cup_{U\subset \accentset{\circ}{A}, U\ aberto} U$. Em particular, $\accentset{\circ}{A}$ é aberto e está contido nele mesmo, logo está em $\accentset{\circ}{\accentset{\circ}{(A)}}$.
+
+\part $a \in int(A\cap B) \iff a \subset A \cap B$ e $a$ é aberto $\iff a \subset A$ e $a \subset B$ e $a$ é aberto $\iff a \in int(A) \cap int(B)$ e $a$ é aberto em cada um.
+
+\part Seja $a \in \cup intA_{i}$, logo existe $i$ tal que $a \subset A_{i}$ e $a$ é aberto. Logo, $a \subset \cup _{i\in I} A_{i}$ e $a$ é aberto, ou seja, $a \in int(\cup A_{i})$.
+
+
+
+\end{parts}\end{solution}
+
+\question[] Demonstre que $\accentset{\circ}{A} = X\setminus (\overline{X\setminus A})$
+
+\begin{solution}Observe que o queremos provar é : $int(A) = \overline{(A^{c})}^{c}$.
+
+Seja $a \in int(A)$, então $a \subset A$, logo $a \nsubseteq \overline{A}^{c}$, logo $A \subset  (\overline{A}^{c})^{c}$,
+
+Agora, seja $a \in overline{(A^{c})}^{c}$, então $a \notin overline{(A^{c})}$. Ou seja, $a \subset A$ e $a$ é aberto. $a\in int(A)$. \end{solution}
+
+\question[]Um espaço métrico $(X,\rho)$ é dito ultramétrico se para todos $x,y, z \in X$, 
+
+$$\rho(x,z) = \max \{\rho(x,z), \rho(y,z)\}$$
+
+Demonstre que num espaço ultramétrico todo ponto da bola $B(x,r)$ é centro dela.
+
+
+\begin{solution}Seja $y \in B(x,r)$. Queremos mostrar  que dado $w \in B(x,r)$, então $\rho(y,w) < r$. Por definição, posso escrever $\rho(y,w) = \max \{\rho(y,x), \rho(w,x)\}$ e esse maximo é menor que $r$, pois os pontos estão na bola. 
+
+Agora seja $z \in B(y,r)$. Então, $\rho(y,z) = \max \{\rho(y,x), \rho (z,x)\}$. Logo, $\rho(z,x) < r$ e $z \in B(x,r)$. \end{solution}
+
+\question[]Seja $f:X\to Z$ contínua e sobrejetora. Se $X$ for separável, $Z$ também é
+
+\question[]Sejam $(X_{n},d_{n})$ espaços métricos, $X = \prod X_{n}$ o produto cartesiano com a métrica usual do produto, $d(x,y) = \sum_{n=1}^{\infty}\frac{d_{n}(x_{n},y_{n})}{2^{n}(1+d_{n}(x_{n},y_{n})}$. Demonstre que
+
+\begin{parts}\part Se cada $X_{n}$ for separável, $X$ é.
+\part A projeção $f:X\to \prod_{i=1}^{N}X_{i}$ é continua.
+\part  \end{parts}
+
+\question[]Sejam $V$ e $W$ espaços normados e $T: V\to W$ linear. Então
+
+\begin{parts}\part $T$ é contínua se, e somente se, for contínua na orgiem.
+
+\part $T$ é contínua na origem se, e somente se, $||T||: = \sup \{||Tx|| : ||x|| \leq 1\} < \infty$. E nesse caso $||Tx|| \leq ||T|| \cdot ||x||$. \end{parts}
+
+\begin{solution}\begin{parts}
+\part $(\Rightarrow)$ Se é contínua, em particular é continua na origem.
+
+$(\Leftarrow)$ Seja $v \in V$. Seja $(v_{n})$ uma sequencia qualquer tal que $(v_{n}) \to v$. Pela continuidade na origem, $||T(v_{n} - v)|| \to 0$. Logo, $T(v_{n}) \to T(v)$.
+
+
+\part $(\Rightarrow)$ Como $T$ é contínua na origem, então pelo item anterior $T$ é continua. 
+
+$||x|| \leq 1$ é compacto. Logo, como T é continua, $T$ possui um máximo nesse conjunto. Portanto, $||T||< \infty$.
+
+Agora veja que vale $||T(x)|| = ||T(\frac{x}{||x||})||x|| || \leq ||T|| \cdot ||x||$
+
+$(\Leftarrow)$ Queremos mostrar que dado $\epsilon > 0$, existe $\delta$ tal que se $||z|| < \delta$, então $||T(z)||<\epsilon$.
+
+Mas por hipotese existe $||T|| \leq M$ e $||T(x)|| \leq M||x||$.
+
+Então basta tomar $||x|| \leq \epsilon/M = \delta $ e temos o resultado.
+\end{parts} \end{solution}
+
+\question[]Seja $B$ um espaço de Banach. Suponhamos que $B[x_{n}, r_{n}] \supset B[x_{n+1}, r_{n+1}]$ para $n$ natural. Então $\cap_{n=1}^{\infty}B[x_{n},r_{n}] \neq \emptyset$.
+
+\begin{solution}Primeiro, vamos entender o enunciado com cuidado. Observe que o centro o raio das bolas estão se alterando para todo $n$.
+
+Existe uma proposição classica que é: Se $F_{n} \subset F_{n-1}$ são conjuntos fechados  $diam(F_{n}) \to 0$, então $\cap F_{n} \neq \emptyset$.
+
+Minha primeira afirmação é que $r_{n} \to 0$.
+ \end{solution}
+
+
+\question[]Seja $(X,d)$ completo. Existe $\tilde{d} \leq 1$ métrica e equivalente a $d$ e tal que $(X, \tilde{d})$ é completo.
+
+\question[]Seja $(X,d)$ métrico completo. Uma função $f: X\to X$ é uma contração se existir $\lambda \in (0,1)$ tal que $d(f(x),f(y)) \leq \lambda d(x,y)$.
+
+Demonstre que se $f$ tem ponto fixo o ponto fixo é unico.
+
+\begin{solution}Suponha que $x, y$ sejam ponto fixos de $f$, então $d(x,y) = d(f(x),f(y)) \leq \lambda d(x,y) < d(x,y)$ (Contradição)! \end{solution}
+
+\question[](Continuação) Seja $x_{0} \in X$ e $x_{n+1} = f(x_{n})$. Demonstre que $(x_{n})_{n}$ converge. E o limite é o ponto fixo de $f$.
+
+\begin{solution} Por hipotese, o espaço é completo. Então uma sequencia converge se e somente se ela é uma sequencia de Cauchy. Então vamos que a sequência definida dessa forma é de Cauchy.
+
+Primeiro note que $d(f(x_{n+1}), f(x_{n})) \lambda d(x_{n+1}=f(x_{n}), x_{n} = f(x_{n-1})) \leq \lambda (\lambda d(f(x_{n}), f(x_{n-1}))) \leq \ldots \leq \lambda^{n-1}d(x_{2},x_{1})$
+
+$d(f(x_{m}),f(x_{n})) \leq d(f(x_{m}, f(x_{m-1}) + d(f(x_{m-1}, f(x_{m-2})) +\ldots d(f(x_{n+1}), f(x_{n}))$
+
+Usando a expressão anterior, obtemos $d(f(x_{m}), f(x_{n})) \leq \lambda^{m} d(x_{1},x_{0})+ \ldots + \lambda^{n}d(x_{1},x_{0}) \leq \frac{\lambda^{n}}{1-\lambda}d(x_{1},x_{0})$
+
+Mas essa expressão vai para $0$ quando $n \to \infty$. Logo, é uma sequência de Cauchy e, portanto, converge. \end{solution}
+\end{questions}
+
+\end{document}

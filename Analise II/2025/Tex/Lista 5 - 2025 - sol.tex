@@ -1,0 +1,557 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\lhead{Analise II}
+\rhead{Solução - Lista 5}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE Analise II\\
+    \LARGE Lista 5\\[0.5em]
+    
+    \large Professor: Paulo Klinger\par
+    \large Monitor: André Lelis\par
+    
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+
+\question[]Seja $f : \mathbb{R}^n \rightarrow (-\infty, \infty]$ convexa. Então $f$ é contínua em $U = \text{int}(\text{dom}\,f)$. Sugestão: Obtenha um simplexo $n$ dimensional contido em $U$. Nesse simplexo $f$ é uniformemente limitada superiormente.
+
+\begin{solution}Seja $\delta > 0$ tal que $B(b_{0}, 2\delta) \subset dom f$. Seja $\{e_{1},...,e_{n}\}$ a base canonica de $\mathbb{R}^{n}$. Definimos, $b_{i} = b_{0} +  \delta e_{i} \in B(b_{0},\delta) \subset int(dom (f))$
+
+Seja $S = con \{b_{0},\ldots, b_{n}\}$
+
+Para todo $y \in S$, logo $y = \sum^{n}_{i=0} \lambda_{i}b_{i}$ com $\sum_{i=0}^{n} \lambda_{i} = 1$.
+
+Como $f$ convexa, vale que $f(y) \leq \sum_{i=0}^{n}\lambda_{i}f(b_{i}) \leq \max \{f(b_{i}) |0 \leq i \leq n\} = M$
+
+Portanto, $f$ é limitada em $S$.
+
+Agora aplicamos proposição 7 pagina 54 das notas de aula.
+
+Da demonstração da proposição, basta tomar $|x_{2}-x_{1}|$ como necessário, ou seja, $|x_{2} - x_{1}| < \frac{\delta \epsilon}{2N}$.
+
+ \end{solution}
+
+\question[]Seja $\ell^2_+ = \{(x_n)_{n\geq1} : x_n \geq 0, \sum_{n=1}^{\infty} x_n^2 < \infty\}$. Determine $\text{aff}(\ell^2_+)$. Demonstre que $\text{ri}\,\ell^2_+ = \emptyset$.
+
+\begin{solution}Primeiro note que $\ell^{2}_{+}$ é convexo, pois se $x,z \in \ell^{2}_{+}$ temos que $rx$ é tal que $r\sum x_{n}^{2} < \infty$ e $(1-r)\sum y_{n} < \infty$ e a soma de ambos será finita.
+
+Como $0 \in \ell^{2}_{+}$, então o espaço afim é o espaço vetorial gerado por $\ell^{2}_{+}$ que é $\ell^{2}$, pois a variedade afim é sempre a translação de um espaço vetorial, como $\ell^{2}_{+}$ contém o 0, então será o espaço vetorial gerado por $\ell^{2}_{+}$, já que é o menor espaço contendo $\ell^{2}_{+}$
+
+Suponha que $x \in ri\ \ell^{2}_{+}$. Então existe $r>0$ tal que $C = B(x,r) \cap \ell^{2} \subset \ell^{2}_{+}$.
+
+Vou mostrar que sempre existe $y \in B(x,r) \cap \ell^{2}$, mas $y \notin \ell^{2}_{+}$.
+
+Se $\|x-y\| < r$, então $\sum_{n=1}^{\infty} (|x_{n}-y_{n}|)^{2} < r$. Por outro lado, dado $\epsilon > 0$, existe $N_{\epsilon}$ tal que $x_{n} < \epsilon$ para todo $n > N_{\epsilon}$. Posso escolher a sequencia $y_{n} = x_{n}$ para todo $n$ com exceção de um elemento tal que $x_{n} - r/2 < 0$ e $|x_{n}-x_{n}+r/2|^{2} = r^{2}/4 < r$, onde definiremos $y_{n} = x_{n} - r/2 < 0$
+
+De modo, $y \notin \ell^{2}_{+}$ e $y \in B(x,r)\cap \ell^{2}$
+
+
+
+
+ \end{solution}
+
+\question[] Seja $1 \leq p < \infty$. Determine $\text{aff}(\ell^p_+)$ e demonstre que $\text{ri}\,\ell^p_+ = \emptyset$.
+
+\begin{solution}Mesmo raciocinio anterior funciona aqui. \end{solution}
+
+\question[] Seja $S \subset \mathbb{R}^n$. Então $\overline{\text{con}\,S}$ é a intersecção dos semi-espaços fechados que contêm $S$.
+
+\begin{solution}Para resolver este exercício, vamos usar o teorema 45 da Notas de Aula.
+
+Pelo teorema todo conjunto convexo fechado é interseção de semi-espaços fechados que o contém, isso é $C = \bigcap_{C \subset F} F$, onde $F$ são semi-espaços fechados.
+
+$\overline{con\ S}$ é fechado e convexo. Logo, pelo teorema é a intersecção de semi-espaços fechados que contém $con S$. Ou seja, $\overline{con\ S} = \cap F$. 
+
+Mas $S \subset \overline{con\ S}$, logo $S \subset \overline{con S} = \cap F$.
+
+Então, $S \subset F$ para cada semi-espaço fechado $F$ que contém $\overline{con\ S}$. Logo, $\cap_{F'}F' \subset \cap_{F} F$, onde $F'$ são semi-espaços fechados que contém $S$.
+
+Agora temos que mostrar que $\cap_{F}F \subset \cap_{F'}F'$ Como $S \subset F'$ e $F'= \overline{con\ F'} \supseteq \overline{con\ S}$.
+
+Logo, as interseções são iguais.
+
+ \end{solution}
+
+\question[] Verifique que a norma de um espaço vetorial é uma função convexa.
+
+\begin{solution}Seja X o espaço normado em questão e $a,b \in X$. Queremos mostrar que $\|(ra + (1-r)b\| \leq r\|a\| +(1-r)\|b\|$ para todo $r \in (0,1)$.
+
+Ora, mas essa expressão vale, pois vale a desigualdade triangular, uma vez que é norma e $\|\lambda x\| = |\lambda| \|x\|$ para todo $\lambda$ escalar.
+
+ \end{solution}
+
+\question[] Seja $f : \mathbb{R} \rightarrow \mathbb{R}$ diferenciável convexa e limitada. Então $f$ é constante.
+
+\begin{solution}Suponha que $f$ não é constante. Tome $x,y$ tais que $f(x) < f(y)$. Vamos supor que $y > x$.
+
+Seja $z > y$. Podemos escrever $y = \alpha z + (1-\alpha)x$ com $\alpha = \frac{y-x}{z-x} \in (0,1)$.
+
+Pela convexidade, $f(y) \leq \alpha f(z) + (1-\alpha)f(x)$. Rearranjando, temos
+
+$$\frac{f(y)-f(x)}{\alpha}+f(x) \leq f(z)$$
+
+que é o mesmo que
+
+$$\frac{f(y)-f(x)}{y-x}(z-x) +f(x) \leq f(z)$$
+
+Com $x,y$ fixo e fazendo $z \to \infty$, temos que $f$ é não limitada. Absurdo! Pois a hipotese do enunciado é que $f$ é limitada. \end{solution}
+
+\question[] Suponha que $f : \mathbb{R}^n \rightarrow (-\infty, \infty]$ seja positivamente homogênea, $f(rx) = rf(x)$ se $r > 0$. Demonstre que $f$ é convexa se e somente se $f(x + y) \leq f(x) + f(y)$.
+
+\begin{solution}
+$(\Rightarrow)$ Se $f$ é convexa, então $f(rx+(1-r)y) \leq rf(x) + (1-r)f(y)$, tomando $r = \frac{1}{2}$ temos o $f(\frac{x+y}{2}) \leq \frac{f(x)+f(y)}{2}$.
+
+Mas $f$ é homogenea, logo $f(\frac{x+y}{2}) = \frac{1}{2}f(x+y)$. O que completa a demonstração.
+
+$(\Leftarrow)$ Vale que $f(x+y) \leq f(x) +f(y)$ para todo $x,y$. Logo, vale $rx$ e $(1-r)y$, portanto $f(rx+(1-r)y)\leq f(rx) + f((1-r)y) = rf(x)+(1-r)f(y)$ por $f$ ser homogenea.
+
+\end{solution}
+
+\question[] Demonstre que se $f$ for positivamente homogênea convexa própria,
+$f(\lambda_1 x_1 + \ldots + \lambda_m x_m) \leq \lambda_1 f(x_1) + \ldots + \lambda_m f(x_m)$, $\lambda_i > 0$, $i \leq m$.
+
+\begin{solution}Só fazer indução em $m$. \end{solution}
+
+\question[] A função $f : \mathbb{R}^n \rightarrow (-\infty, \infty]$ é quase-convexa se $f(rx + (1 - r)y) \leq \max\{f(x), f(y)\}$. Verifique que $f$ convexa é quase-convexa. E que se $f$ é quase-convexa, então $\{x : f(x) < \alpha\}$ e $\{x : f(x) \leq \alpha\}$ são convexos.
+
+\begin{solution} 
+Verificação que convexa é quase-convexa:
+
+Seja $x,y \in \mathbb{R}$ e $r\in (0,1)$. Daí, $f(rx+(1-r)y) \leq rf(x) + (1-r)f(y)$ por $f$ ser convexa. Agora, suponhamos, sem perda de generalidade, que $f(x) \geq f(y)$. Logo, $rf(x) + (1-r)f(y) \leq r(f) + (1-r)f(x) = f(x) = \max \{f(x), f(y)\}$.
+
+Portanto, se $f$ é convexa, então é quase-convexa.
+
+
+Vamos mostrar que se $f$ é quase-convexa, então $X = \{x | f(x) < \alpha\}$ é convexo:
+
+Sejam $y,z \in X$. Queremos mostrar que $ry+(1-r)z \in X$ para todo $r\in (0,1)$. Ou seja, temos que mostrar que $f(ry +(1-r)z) < \alpha$.
+
+Por hipotese, $f(ry+(1-r)z) \leq \max\{f(y),f(z)\}$, mas como $y,z\in X$, então $f(x)< \alpha, f(y) < \alpha$. Logo, $\max \{f(y),f(z)\} < \alpha$.
+
+Portanto, $f(ry+(1-r)z) < \alpha$, concluindo que $ry+(1-r)z \in X$.
+
+A demonstração para $\{x | f(x) \leq \alpha\}$ é analoga.
+
+\end{solution}
+
+\question[]  Verifique que são convexas:
+\begin{enumerate}
+\item $f(x) = e^{\alpha x}$, $-\infty < \alpha < \infty$;
+\item $f(x) = 
+\begin{cases} 
+\infty & \text{se } x < 0 \\
+x^p & \text{se } x \geq 0
+\end{cases}$
+sendo $1 \leq p$;
+\item $f(x) = 
+\begin{cases} 
+\infty & \text{se } x < 0 \\
+-x^p & \text{se } x \geq 0
+\end{cases}$
+para $0 \leq p \leq 1$;
+\item $f(x) = 
+\begin{cases} 
+\infty & \text{se } x \leq 0 \\
+-x^p & \text{se } x > 0
+\end{cases}$
+para $p \leq 0$;
+\item $f(x) = 
+\begin{cases} 
+\frac{1}{\sqrt{\alpha^2-x^2}} & \text{se } |x| < \alpha \\
+\infty & \text{se } |x| \geq \alpha
+\end{cases}$;
+\item $f(x) = -\log x$ se $x > 0$ e $f(x) = \infty$ se $x \leq 0$.
+\end{enumerate}
+
+\begin{solution} \begin{enumerate}
+
+
+\item $f'(x) = \alpha e^{\alpha x}$ e $f''(x) = \alpha^{2}e^{\alpha x} > 0$. Logo, $f$ é convexa.
+
+\item Se $x > 0$, então $f'(x) = px^{p-1}$ e $f''(x)= p(p-1)x^{p-2} > 0$. Logo, $f$ é convexa quando $x > 0$. E será em 0 pela continuidade de $f$ a direita.
+
+Se $x < 0$, temos que $f(rx+(1-r)y) \leq rf(x) + (1-r)f(y) = \infty $.
+
+Portanto, $f$ é convexa.
+
+\item Analogo ao anterior.
+
+\item Se $x>0$, então $f'(x) = -px^{p-1}$ e $f''(x)=-p(p-1)x^{p-2}$ será menor que 0, logo não pode ser convexa.
+
+\item Se $|x| < \alpha$, temos que $f'(x) = -\frac{(-2x)}{2\sqrt[3]{(\alpha^{2}-x^{2}}}$ e $f''(x) = \frac{3x^{2}}{(\alpha^{2}-x^{2})^{\frac{3}{2}}} + \frac{1}{\sqrt[3]{\alpha^{2}-x^{2}}}$
+
+$|x| \geq \alpha$, então $f(rx +(1-r)y) \leq rf(x)+(1-r)f(y) = \infty$.
+
+\item $f''(x)=\frac{1}{x^{2}} \geq 0$. Logo, é convexa.
+
+Se $x \geq 0$, fazemos como os casos anteriores.
+
+
+\end{enumerate}
+
+\end{solution}
+
+\question[] Demonstre que $f(x) = d(x, C)$ sendo $C$ convexo é uma função convexa.
+
+\begin{solution}Queremos mostrar que para qualquer $x,y$ e $r\in (0,1)$ vale que $f(rx+(1-r)y) \leq rf(x)+(1-r)f(y)$.
+
+$f(rx+(1-r)y) = d(rx+(1-r)y, C) \leq d(rx+(1-r)y, z)(*)$ para todo $z \in C$, uma vez que $d(a,C) = \inf_{z} \{d(a,z)| z\in C\}$.
+
+Nesse exercicio, estamos em $\mathbb{R}^{n}$, então $d(x,y) = \|x-y\|$.
+
+Como $(*)$ vale para todo $z$, vamos supor que $z = r w + (1-r)u$ com $u, w \in C$ (Observe que como $C$ é convexo, isso é possivel de ser feito).
+
+Logo, $d(rx+(1-r)y, C) \leq d(rx+(1-r)y, z) = \|rx+(1-r)y - rw -(1-r)u\|$
+
+$\leq r\|x-w\| +(1-r)\|y-u\|$
+
+Mas $w$ e $u$ são quaisquer. Logo, se tomar uma sequencia indo $w_{n}$ e $u_{n}$ para os infimos $d(x, C)$ e $d(y,C)$ temos o resultado.
+
+
+\end{solution}
+
+\question[] Seja $f$ convexa no $\mathbb{R}^n$ e duas vezes continuamente diferenciável no aberto convexo $U \subset \mathbb{R}^n$. Então para todo $x \in U$, a matriz hessiana, $Q = \left(\frac{\partial^2 f}{\partial x_i \partial x_j}(x)\right)_{ij}$ é positiva semi-definida: $\langle y, Qy \rangle \geq 0$ para todo $y \in \mathbb{R}^n$.
+
+\begin{solution}Uma vez que falou em matriz Hessiana e duas vezes diferenciável, minha intuição diz que precisamos conseguir alguma maneira de aplicar a expansão de Taylor.
+
+A expansão de Taylor de segunda ordem é:
+
+$f(y+\lambda h) = f(y) + \langle f'(y),\lambda h\rangle + \frac{1}{2}\langle f''(y)\lambda h, \lambda h\rangle + r(\lambda)$ tal que $\lim_{\lambda\to 0} \frac{r(\lambda)}{\lambda^{2}} = 0$.
+
+Então meu objetivo vai ser mostrar que $\lim_{\lambda \to 0} \frac{f(y+\lambda h)-f(y)}{\lambda} - \langle f'(y), h\rangle \geq 0$ para todo $h$. 
+
+Mas $\lim_{\lambda \to 0} \frac{f(y+\lambda h)-f(y)}{\lambda}$ é a derivada direcional na direção $h$.
+
+Além disso, $f$ é convexa, logo $f(rx + (1-r)y) \leq rf(x) + (1-r)f(y)$.
+
+Mas podemos escrever a ultima expressão como $f(y +r(x-y)) \leq r(f(x)-f(y)) + f(y)$ que é o mesmo que
+
+$$\frac{f(y+r(x-y)) - f(y)}{r} \leq f(x)-f(y)$$
+
+Mas isso vale para qualquer $x$ e $y$, e $r\in (0,1)$. Tomando limite com $r\to 0$,temos então que
+
+$$\langle f'(y), x-y\rangle + f(y) \leq f(x)$$
+
+E isso vale para qualquer $x,y$, logo tomando $x = y +\lambda h$ e voltando a expansão de Taylor, nós chegamos a
+
+$\frac{1}{2}\langle f''(y)h, h\rangle \geq 0$ como queriamos.
+ \end{solution}
+
+
+\question[] (continuação) Se $Q$ for positiva definida ($\langle y, Qy \rangle > 0$ se $y \neq 0$), $f$ é estritamente convexa.
+
+\begin{solution}Pela formula de Taylor, existe $z$ tal que
+
+$f(x+h) = f(x) + \langle \triangledown f(x), h\rangle + \frac{1}{2}\langle f''(z)h, h\rangle$
+
+Como $\frac{1}{2}\langle f''(z)h, h\rangle > 0$, segue que
+
+$$f(x+h) > f(x) + \langle \triangledown f(x),h\rangle$$
+
+
+Tome $w,z \in \mathbb{R}^{n}$, $\lambda \in (0,1)$ e $d = w-z$.
+
+Então vale que 
+
+$$f(w) > f(z+\lambda d) + \langle f'(z+\alpha d), w-(z+\lambda d)\rangle$$
+
+e
+
+$$f(z) > f(z+\lambda d) + \langle f(z+\alpha d), z-(z+\lambda d) \rangle$$
+
+Multiplicando a primeira desigualdade por $\lambda$ e a segunda por $1-\lambda$.
+
+Daí, somando se obtem
+
+$$\alpha f(w) + (1-\alpha)f(z) > f(z+\lambda d) = f(\lambda w + (1-\lambda)z)$$.
+
+Portanto, $f$ é estritamente convexo.
+
+
+
+\end{solution}
+
+\question[] Seja $A = \begin{pmatrix} a & b \\ b & d \end{pmatrix}$ matriz simétrica $2 \times 2$. Demonstre que $A$ é positiva semi-definida se e somente se $a \geq 0$ e $ad - b^2 \geq 0$. Como ficam essas condições se $-A$ for positiva semi-definida? Quais as condições para $A$ ser positiva definida?
+
+\begin{solution} 
+Primeiro temos que para qualquer vetor $(x,y)$: $$\begin{pmatrix}
+a& b \\ b& d
+\end{pmatrix} \begin{pmatrix}
+x\\y
+\end{pmatrix} = \begin{pmatrix}
+ax + by \\bx + dy
+\end{pmatrix}$$
+
+Agora, usando a definição temos que
+
+$\langle((x,y), (ax+by, bx+dy)\rangle \geq 0$
+
+Daí, $ax^{2}+bxy +bxy + dy^{2}\geq 0$. Essa desigualdade deve valer para qualquer $x,y$.
+
+Se $y = 0$, então a equação se transforma em $ax^{2} \geq 0$, mas isso ocorre para todo $x$ se e somente se $a\geq 0$.
+
+Agora vamos supor que $y\neq 0$.
+
+Então podemos reescrever a desigualdade como:
+
+$y^{2}(a(\frac{x}{y})^{2} + 2b\frac{x}{y} + d) \geq 0$
+
+Como $y\neq 0$, então o problema se tornar em achar $a,b,d$ tais que
+
+$a(\frac{x}{y})^{2} + 2b\frac{x}{y} + d \geq 0$
+
+Como posso interpretar a equação acima como uma equação de segundo grau em $\frac{x}{y} = z$ e quero que seja sempre maior que $0$.
+
+Se o lado esquerdo tiver minimo da desigualde tiver minimo e esse minimo for não-negativo, então a desigualdade é satisfeita.
+
+$f(z) = az^{2}+2bz + d$, logo $f'(z) = 2az +2b$ e $f''(z) = 2a$. Se $a\geq 0$, então possui ponto de minimo, o ponto é unico e é dado por $f'(z) =0 \Rightarrow z =-\frac{b}{a}$ se $a\neq 0$.
+
+Então que queremos que $f(-\frac{b}{a}) \geq 0$. Logo, queremos que
+
+$$a(\frac{-b}{a})^{2} +2b(\frac{-b}{a} + d\geq 0$$
+
+$$\frac{b^{2}}{a} - 2\frac{b^{2}}{a} + d = -\frac{b^{2}}{a} + d\geq 0$$
+
+Ou seja, queremos que $ad \geq b^{2}$, ou seja, $ad - b^{2} \geq 0$.
+
+Para positiva-definida, podemos repetir o racionio, mas com a desigualdade sendo estritas.
+
+Para $-A$ semi-definida, o mesmo raciocinio vai implicar em $a \leq 0, d\leq 0$ e $ad -b^{2}\geq 0$.
+
+
+
+\end{solution}
+
+\question[]Se $f_-(x_0) \leq m \leq f_+(x_0)$ então $f(x) \geq m(x - x_0) + f(x_0)$, $x \in \mathbb{R}$.
+
+\begin{solution}Aqui creio que houve um erro de digitação no enunciado. Eram $f^{-}$ e $f^{+}$ para manter consistencia com a anotação das notas de aula. Consultem a página 50 das notas de aula.
+
+Agpra note que
+
+$$\frac{f(x_0 +h)-f(x_0)}{h}\geq f^{+}(x_0) \geq m \geq f^{-}(x_0)\geq \frac{f(x_{0}-h)-f(x_{0})}{-h}$$
+
+De onde tiramos que
+
+$$f(x_0 +h) \geq f(x_0) + mh$$
+
+E
+
+$$f(x_{0} - h) \geq f(x_{0}) +m (-h)$$
+
+Se $x >x_{0}$, defina $h = x- x_{0}$ e se $x \leq x_0$ defina $h = x_0 -x$.
+ \end{solution}
+
+\question[] Seja $U_i : \mathbb{R}^n_+ \rightarrow \mathbb{R}$ contínua e côncava, $i = 1, \ldots, I$. Seja $\omega \in \mathbb{R}^n_{++}$ e $X = \{(x_1, \ldots, x_I) \in (\mathbb{R}^n_+)^I : \sum_{i=1}^I x_i \leq \omega\}$. Definamos o conjunto de possibilidades de utilidade
+$$U = \{u \in \mathbb{R}^I : \exists x \in X, u_i \leq U_i(x_i), 1 \leq i \leq I\}$$.
+Demonstre que $U$ é fechado, convexo.
+
+\begin{solution}
+Para mostrar que $U$ é fechado vamos mostrar que qualquer sequencia convergente em $U$ tem limite em $U$.
+
+Seja $(u_n)_{n=1}^{\infty}$ uma sequencia em $U$ convergindo para um $u$.
+
+Para $u_{i}$ na sequencia, existe $x_{i} \in X$ tal que $u_{i}[m]\leq U_{i}(x_{i}[m])$
+
+Montamos a sequencia dos $(x_{i})_{i=1}^{\infty}$. Como $X$ é compacto, então $(x_{i})_{i=1}^{\infty}$ possui subsequência convergente $(x_{ik})$, digamos que converge para $x$.
+
+Observe que pela continuidade de $U_{i}$ temos que $u[i] \leq U_{i}(x[i])$. Portanto, $u \in U$. Logo, $U$ é fechado.
+
+Sejam $u, u' \in U$ e $\alpha \in (0,1)$. Como $u \in U$, então existe $x$ tal que $u_{i} \leq U_{i}(x_{i})$. Analogamente para $u'$ existe $x'$ tal que $u'_{i} \leq U_{i}(x'_{i})$.
+
+Temos que $\alpha u_{i} + (1-\alpha)u'_{i} \leq \alpha U_{i}(x_{i}) + (1-\alpha) U_{i}(x'_{i})$
+
+Como $U$ é concava, então $\alpha U_{i}(x_{i}) + (1-\alpha) U_{i}(x'_{i}) \leq U_{i}(\alpha x_{i} + (1-\alpha)x'_{i})$
+
+Mas $X$ é convexo, então $\alpha x + (1-\alpha)x' \in X$. Logo, $\alpha u + (1-\alpha)u'\in U$, concluindo que $U$ é convexo.
+ \end{solution}
+
+
+\question[] (continuação) A fronteira de Pareto, $U^P$, é definida pelos vetores $u \in U$ tais que não existe $u' \in U$, $u' \geq u$ e $u' \neq u$. Demonstre que para $\bar{u} \in U^P$ existe $\lambda \in \mathbb{R}^I_+ \setminus \{0\}$ tal que $\lambda \cdot \bar{u} = \max\{\lambda \cdot u : u \in U\}$.
+
+\begin{solution}
+
+Afirmação: se $\overline{u} \in UP$, então $\overline{u} \in U \setminus int(U)$.
+
+Prova da afirmação: $U$ é convexo, então Se $\overline{u} \in int(U)$, então existe $r>0$ tal que $B(r,\overline{u}) \subset U$. Tome por exemplo $\overline{u} + \frac{r}{2}(1,\ldots,1) \in U$ Agora note que $\overline{u} + \frac{r}{2}(1,\ldots,1) >> \overline{u}$. Contradição com a maximilidade de $\overline{u}$.
+
+Afirmação 2: UP é convexo.
+
+Prova da afirmação 2: Seja $u$ e $u'$ em UP. Então, $u \geq u'', u'\geq u''$ para todo $u''$ em $U$. Logo, $ru \geq  ru''$ e $(1-r)u' \geq (1-r)u''$.
+
+Somando as desigualdade, $ru +(1-r)u' \geq u''$ para $r \in (0,1)$ e $u''\in U$.
+
+Além disso, $ru + (1-r)u' \in U$, pois $U$ é convexo pelo ultimo exercicio.
+
+
+
+Agora, portanto, podemos aplicar o corolário 16 (pagina 45) das notas para afirmar que $\lambda \in \mathbb{R}^{I}\setminus \{0\}$ tal que $\langle \overline{u}, \lambda \rangle \geq \langle u, \lambda \rangle$.
+
+O que falta provar agora é $\lambda >> 0$.
+
+Ora, mas como a desigualdade vale para todo $u$, podemos tomar $u = \overline{u} -\epsilon e_{i}$ com $\epsilon>0$ suficiente para $u \in U$.
+
+Daí, $\langle \overline{u} - u, \lambda \rangle \geq 0$, mas $\langle \overline{u} - u, \lambda \rangle = \epsilon\lambda_{i} \geq 0$.
+
+
+
+
+\end{solution}
+
+\question[] Encontre os hiperplanos suporte do triângulo com vértices $(0, 0)$, $(0, 2)$, $(1, 0)$.
+
+\begin{solution}Em $\mathbb{R}^{2}$ qualquer hiperplano é uma reta. Além disso, para ser hiperplano suporte ele tem que intersectar o triangulo, mas não pode intersectar seu interior relativo.
+
+Portanto, os hiperplanos suportes intersectam somente os vertices ou são retas geradas pelas arestas.
+
+\begin{enumerate}
+\item Pelo vertice $(0,0)$ passam retas da forma $\{(x,ax)| x\in \mathbb{R}\}$ ou $\{(0,y)| y \in \mathbb{R}\}$.
+
+A segunda reta é gerada pela aresta $\overline{(0,0),(0,2)}$.
+
+A primeira reta é suporte se $a \in (-\infty, 0]$.
+
+\item Pelo vertice $(0,2)$ são da forma $\{(x, ax+2)| x\in \mathbb{R}\}$, onde $a \in \mathbb{R}$. Os valores para ser suporte são $a \in [-2,\infty)$.
+
+\item Pelo vertice $(1,0)$ são da forma $\{x, a(x-1)| x\in \mathbb{R}\}$. ou $\{(1,y)| y \in \mathbb{R}\}$.
+
+E $a \in (-\infty, -2)\cup (0, \infty]$.
+\end{enumerate} \end{solution}
+
+\question[] Verifique usando o lema de Farkas que o sistema não tem solução:
+$\begin{pmatrix} 2 & 0 & -1 \\ 1 & 1 & 2 \end{pmatrix} \begin{pmatrix} x \\ y \\ z \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$,
+$(x, y, z) \geq 0$.
+
+\begin{solution}O Lema de Farkas é o exemplo 34 das Notas de Aula e se encontra na página 46 das notas.
+
+Nosso objetivo aqui é um vetor $X = \begin{pmatrix}
+x \\ y
+\end{pmatrix}$ tal que $X^{t}A \leq 0$ e $\langle b,\mu\rangle > 0$. 
+
+$X^{t}A = \begin{pmatrix}
+2x+y & y & -x +2y
+\end{pmatrix}$ e $\langle b,\mu\rangle = x$ 
+
+Da segunda condição, basta escolher $x > 0$ e da primeira condição basta escolher $y< 0$. Então escolha, por exemplo, $x=1$ e $y = -2$. \end{solution}
+
+\question[] Seja $p_1 > 0$, $p_2 > 0$. Usando multiplicadores de Kuhn-Tucker resolva
+\begin{align*}
+\max & \sqrt{x + 1} + \sqrt{y + 1} \\
+\text{s.a. } & \langle p, (x, y) \rangle \leq 2 \\
+& x \geq 0, y \geq 0.
+\end{align*}
+
+
+\begin{solution}
+
+Vamos montar o Lagrangeano:
+
+$\mathcal{L}:\sqrt{x+1} +\sqrt{y+1}+\lambda(px+qy-2) + \mu_{1} x + \mu_{2}y$
+
+Condições de KKT:
+
+$[x]: \frac{1}{2\sqrt{x+1}} -\lambda p + \mu_{1}$
+
+$[y]: \frac{1}{2\sqrt{y+1}} - \lambda q + \mu_{2}$ 
+
+$\lambda \geq 0, \mu_{1}\geq 0, \mu_{2} \geq 0$
+
+$\lambda(2-px-qy) = 0$
+
+$\mu_{1}x = 0$
+
+$\mu_{2}y = 0$.
+
+E a restrição é $\langle p,(x,y)\rangle \leq 2$
+
+Agora note que $f(x) = \sqrt{x+1}$, $f'(x) = \frac{1}{2\sqrt{x+1}}$ e $f''(x) = -\frac{1}{4\sqrt{(x+1)^{3}}}$. Logo, o problema será concavo.
+
+Vamos quebrar em casos para facilitar a solução:
+\begin{enumerate}
+\item Se $x>0$ e $y>0$, então $\mu_{1} = \mu_{2} = 0$.
+
+Das condições, tiramos que $\frac{\sqrt{y+1}}{\sqrt{x+1}} = \frac{p}{q}$.
+
+Daí, $\frac{q^{2}}{p^{2}}(y+1) -1 = x$.
+
+Substituindo na restrição, temos $p(\frac{q^{2}}{p^{2}}(y+1)-1) + qy = 2$
+
+Logo, $y = \frac{2p+p^{2}-q^{2}}{pq+q^{2}}$ e $x = \frac{2q+q^{2}-p^{2}}{pq+p^{2}}$
+
+Observe que $x>0$ e $y>0$ necessitam que $2p + p^{2} -q^{2} > 0$ e $2q +q^{2} > p^{2}$.
+
+\item $x>0$ e $y=0$
+
+Nesse caso, $\mu_{1} = 0$ e $px = 2$. Logo, $x = \frac{2}{p}$ e $\lambda = \frac{1}{2\sqrt{2p+p^{2}}}$
+
+Vamos estudar o $\mu_{2}$.
+
+$\mu_{2} = \lambda q - \frac{1}{2}$. Como $\mu_{2} \geq 0$, então $\lambda \geq \frac{1}{2q}$
+
+Logo, $\frac{1}{2\sqrt{2p+p^{2}}} \geq \frac{1}{2q}$. Seguindo que $q \geq \sqrt{2p+p^{2}}$.
+
+\item Se $x=0$ e $y >0$, então é o simétrico do caso anterior.
+
+\item Se $x=y=0$. Então não tem solução, pois não satisfaz a restrição que deve valer na igualdade.
+\end{enumerate}
+
+\end{solution}
+
+
+\question[] Determine os subgradientes de $f(x) = |x|$, $x \in (-\infty, \infty)$.
+
+\begin{solution}Como $f$ é diferencial em $x>0$ e $x<0$, então nesses conjuntos os subgradientes coincidem com a derivada. Portanto, se $x>0, \partial f = 1$ e se $x< 0, \partial f = -1$.
+
+Daí, falta estudar $x = 0$.
+
+Queremos então achar $x^{*}$ tal que
+$$f(z) -f(x) \geq x^{*}(z-x)$$
+
+Se $x$ por hipotese é $0$, então o problema se transforma em $x^{*}$ tal que $|z| > x^{*}z$.
+
+Se $z>0$, então $1\geq x^{*}$. Se $z<0$, então $x^{*}\geq -1$.
+
+\end{solution}
+
+\question[]  Seja $f(x, y) = x^a y^b$, $(x, y) \geq 0$. Sendo $a > 0$, $b > 0$. Determine os valores de $(a, b)$ para os quais $f$ é côncava. Verifique quais os $(a, b) >> 0$ tais que $f$ é estritamente côncava para $(x, y) >> 0$.
+
+\begin{solution}
+Pelos exercícios 12 e 13, temos que a função será concava se e somente se a matriz Hessiana for negativa semi-definida e estritamente concava se for negativa definida.
+
+Então, teriamos $\frac{\partial^{2}f}{\partial x_{1}^{2}} < 0$ e $\frac{\partial^{2}f}{\partial x_{1}^{2}}\frac{\partial^{2}f}{\partial x_{2}} - (\frac{\partial^{2} f}{\partial x_{1} \partial x_{2}})^{2} > 0$
+
+Então temos que as condições são
+
+$$a(a-1)x_{1}^{a-2}x_{2}^{b} < 0\ (*)$$
+
+$$(a(a-1)x_{1}^{a-2}x_{2}^{b})(b(b-1)x_{1}^{a}x_{2}^{b-2}) > (abx_{1}^{a-1}x_{2}^{b-1})^{2}$$
+
+A segunda equação pode ser reescrita como
+
+$$((a-1)(b-1)-ab)x_{1}^{2(a-1)}x_{2}^{2(b-1)}>0\ (**)$$
+
+Então, tiramos de $(*)$ que $0< a <1$,
+
+De $(**)$, nós tiramos que $((a-1)(b-1)-ab) > 0$
+
+$(a-1)(b-1) - ab = -a-b +1> 0$, logo $a+b < 1$. Portanto, $b < 1-a$ para ser estrimamente concava. Para concava, as desigualdades não são estritas.
+
+Por outro lado, ainda temos que verificar se é estrito ou não na igualdade $a+b =1$.
+
+Mas $f(\frac{1}{2}(x,x)+\frac{1}{2}(y,y)) = \frac{x+y}{2} = \frac{1}{2}f(x,x) +\frac{1}{2}f(y,y)$. Logo, não é estrito.
+ \end{solution}
+
+\end{questions}
+
+\end{document}

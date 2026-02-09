@@ -1,0 +1,274 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\lhead{Analise II}
+\rhead{Solução - Lista 4}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE Analise II\\
+    \LARGE Lista 4\\[0.5em]
+    
+    \large Professor: Paulo Klinger\par
+    \large Monitor: André Lelis\par
+    
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+
+\question[] (Espaço de Baire) Seja $B = \mathbb{R}^\mathbb{N}$ o espaço das sequências reais. Para $x, y \in B$, se $x \neq y$, seja $m(x, y) = \min \{n \in \mathbb{N} : x_n \neq y_n\}$. Então, defina
+\[ d(x, x) = 0 \quad \text{e, para } x \neq y, \quad d(x, y) = \frac{1}{m(x, y)}. \]
+Verifique que $d$ é uma ultramétrica.
+
+\begin{solution}Lembre-se que $(B,d)$ é ultramétrico se é um espaço metrico e para quaisquer $x,y,z$ vale $d(x,y) \leq \max \{d(x,z), d(y,z)\}$ Observe que essa desigualdade implica na desigualdade triangular, sendo então suficiente verificar ela para verificar a desigualdade triangular.
+
+Vamos verificar as propriedades para ser ultramétrica.
+
+- $d(x,y) = d(y,x)$, pois $m(x,y) = m(y,x)$.
+
+- Seja $x \neq y$, então existe $n > 0$ tal que $x_{n} \neq y_{n}$. Logo, $m(x,y) \neq 0 \Rightarrow d(x,y) \neq 0$.
+
+- $d(x,y) \leq \max \{ d(x,z), d(z,y)\}$: Observe que se $m(x,z) = k$, então $x_{k} \neq z_{k}$ e $x_{n} = z_{n}$ para todo $n<k$.
+
+Se $m(x,z) < k$, então $m(y,z) < k$, pois existe $n'< k$ tal que $x_{n'}\neq z_{n'}$, mas $x_{n'} = y_{n'}$ pelo pagrafro anterior, logo $z_{n'} \neq y_{n'}$. Logo, $d(y,z) > 1/k =  d(x,y)$. 	E $d(x,z) > \frac{1}{k}$ pela hipotese que $m(x,z) < k$.
+
+Se $m(x,z) \geq k$, então $x_{k} = y_{k}$ e $m(z,y) = k$, então pois $z_{n} = x_{n} =y_{n}$ para $n<k$, logo $\max\{d(z,y), d(z,y)\} \geq d(x,y)$. 
+
+ \end{solution}
+
+\question[] Demonstre que o espaço de Baire é completo.
+
+\begin{solution}Mostrar que é completo é o mesmo que mostrar que toda sequencia de Cauchy converge.
+
+Seja $(x_{n})_{n=1}^{\infty}$ uma sequencia de Cauchy. Então, dado $\epsilon > 0$, existe $M_{\epsilon}$ tal que se $m,n > M$ então $d(x_{m},x_{n}) <\epsilon$.
+
+Observe que com a metrica dada no exercício anterior, então para quaisquer $z,w$ no espaço de Baire $d(z,w) = \frac{1}{k}$ para algum $k \in \mathbb{N}$. Por conta disso, vai ser mais fácil usar algo como $\frac{1}{k}$.
+
+
+Então, dado $\epsilon > 0$, existe $M_{K}$ tal que se $m,n \geq M_{k}$ então $d(x_{m},x_{n})< \frac{1}{K} <\epsilon$.
+
+Mas isso significa que se $m,n \geq M_{K}$, então $x_{m}[i] = x_{n}[i]$ para todo $i \leq K$. Em particular, para todo $n > M_{k}$, $x_{n}[k] = x_{M_{k}}[k]$
+
+Então para cada $K \in \mathbb{N}$, existe esse $M_{K}$. A única coisa que vou exigir é que vou escolher $M_{K+1} > M_{K}$ sempre.
+
+Então crio a sequencia $x = (x_{M_{1}}[1],x_{M_{2}}[2],\ldots, x_{M_{n}}[n], \ldots)$.
+
+Agora vou provar que esse $x$ é o limite de $(x_{n})_{n=1}^{\infty}$
+
+Dado $\epsilon > 0$, existe $K>0 $ tal que $0<\frac{1}{K} < \epsilon$.
+
+Afirmação: se $n > M_{k}$, então $d(x,x_{n}) < \frac{1}{K} < \epsilon$.
+
+Prova: $d(x,x_{n}) \leq \max \{d(x,x_{M_{k}}) d(x_{n},x_{M_{k}}) \}$ pelo exercício anterior.
+
+$d(x,x_{M_{k}}) < \frac{1}{K}$ pela construção de $x$: Veja pela construção $x_{M_{k-1}}$ e $x_{M_{k}}$ são iguais em $x_{M_{K-j}}[K-j] = x_{M_{k}}[K-j]$ para todo $j \in \mathbb{N}$, $1 \leq j \leq K-1$.
+
+E $d(x_{n}, x_{M_{k}}) < \frac{1}{K}$, pois $n > M_{k}$ e construímos $M_{k}$ para satisfazer essa propriedade de $d(x_{n}, x_{M_{k}}) < \frac{1}{K}$.
+
+ 
+
+ \end{solution}
+
+\question[] (Teorema de Baire) Seja $(X, d)$ completo e $F_n$ fechado com interior vazio. Então $\cup_{n=1}^\infty F_n$ tem interior vazio. 
+
+\textbf{Sugestão:} Obtenha uma sequência de bolas $B[x_n, r_n] \setminus F_n \supset B[x_{n+1}, r_{n+1}]$ tais que $r_n \downarrow 0$.
+
+\begin{solution}Vamos novamente usar a sugestão. Observe que a sugestão fala para pegar bolas fechadas no complementar de $F_{n}$. Então, vamos primeiro entender o que é o complementar.
+
+$F_{n}$ é fechado, logo $F^{c}_{n}$ é aberto. Além disso, $(\cup_{n=1}^\infty F_n)^{c} = \cap_{i=1}^{\infty}F_{n}^{c}$.
+
+Agora, a pergunta é o que significa $F_{n}$ ter interior vazio. Seja $a \in F_{n}$, então toda bola que contém $a$ também contem um elemento de $F_{n}^{c}$. Note que isso implica que $F_{n}^{c}$ é denso, pois se $x \in F_{n}^{c}$ ok, pois já está em $F_{n}^{c}$, a outra alternativa é $x \in F_{n}$ que acabamos de ver, o que implica que $F_{n}^{c}$ é denso.
+
+Por outro lado, se $Z$ é denso, então $Z^{c}$ tem interior vazio.
+
+Logo, um conjunto qualquer $A$ é denso se, e somente se, $A^{c}$ tem interior vazio.
+
+Portanto, o problema em questão agora é mostrar que $\cap_{i=1}^{\infty}F_{n}^{c}$ é denso.
+
+Seja $W$ um aberto qualquer. Então $W \cap F_{1}^{c} \neq \emptyset$, pois $F_{1}^{c}$ é denso. Intersecção de dois abertos é aberto. Então existe $x_{1} \in W \cap F^{c}_{1}$ e $r_{1} > 0$ tal que $B(x_{1},r_{1}) \subset W\cap F_{1}^{c}$. Observe que posso pegar de tal forma que $B[x_{1},r_{1}] \subset W\cap F_{1}^{c}$. Mas pelo que vimos $F_{2}^{c}$ é denso e repetimos o raciocinio anterior.
+
+Agora observe que podemos escolher $r_{n} \to 0$ e $\cap B[x_{n},r_{n}] \neq \emptyset$ pelo teorema 29 das Notas de Aula. Portanto, $W \cap (\cap F_{n}^{c}) \neq \emptyset$.
+
+ \end{solution}
+
+
+\question[] Seja $\mathcal{K} = \{K \subset \mathbb{R}^n : K \text{ fechado, limitado, não-vazio}\}$. Para $A, B \in \mathcal{K}$, definimos
+\[ e(A, B) = \sup \{d(x, B) : x \in A\}, \quad h(A, B) = \max \{e(A, B), e(B, A)\}. \]
+Demonstre que, para $C \in \mathcal{K}$, $e(A, C) \leq e(A, B) + e(B, C)$ e que $h$ é uma métrica (métrica de Hausdorff) em $K$.
+
+\begin{solution}
+
+$h(A,B) \geq 0:$ Por definição, a distancia de um ponto a um conjunto é dada por $d(x,B) = \inf \{d(x,y) | y \in B\}$. Em particular, podemos tomar $x \in A$ e temos $d(x,B) \geq 0$.
+
+Portanto, $h(A,B) = \max \{e(A,B), e(B,A)\} \geq e(A,B) \geq d(x,B) \geq 0$.
+
+$h(A,A) = 0:$ Note que $d(x,A) = 0$ para todo $x \in A$. Além disso, $A$ é fechado, logo portanto $d(x,A) = 0 \iff x \in A$.
+
+$h$ é simétrica.
+
+$h(A,C) \leq h(A,B) + h(B,C)$
+
+Para provar isso, temos que provar que $e(A,C) \leq e(A,B) + e(B,C)$ que é a primeira parte do enunciado:
+
+Temos que $d(a,C) \leq d(a,c) \leq d(a,b) + d(b,c)$ para quaisquer $c\in C$ e $b \in B$ Como vale para qualque $b$ e $c$, então $d(a,C) \leq d(a,b) + d(b,C)$. Mas $d(b,C) \leq e(B,C)$, logo $d(a, C) - e(B,C) \leq d(a,b)$ para todo $b$, então $d(a,C) - e(B,C) \leq inf(\{d(a, b)| b\in B\}) = d(a, B) \leq e(A,B)$.
+
+$d(a,C) \leq e(A,B) + e(B,C)$.
+
+Como é para todo $a \in A$, então $\sup d(a,C) \leq e(A,B) + e(B,C)$, logo $e(A,C) \leq e(A,B) + e(B,C)$.
+
+Vamos agora usar isso para provar 
+$h(A,C) \leq h(A,B) + h(B,C)$.
+
+Ora $e(A,C) \leq e(A,B) + e(B,C)$, dai $ e(A,C) \leq h(A,B) + h(B,C)$ e $e(C,A) \leq e(C,B) + e(B, A) \leq h(C,B) + h(B,A) = h(A,B) +h(B,C)$ pela simetria. Portanto, vale o resultado.
+
+Como $B$ é fechado, existe $y \in B$ tal que $e(A,B) = d(x,y)$ para algum $x \in A$ \end{solution}
+
+\question[] Sejam $(X_i, d_i)$ métricos, $i \geq 1$. Demonstre que $\prod_{i=1}^\infty X_i$ é métrico completo se e somente se cada $X_i$ for completo.
+
+\begin{solution}Para provar que é completo temos que provar que toda sequência de Cauchy converge.
+
+$(\Rightarrow)$ Seja $(x_{n})_{n=1}^{\infty} \subset X$ uma sequencia de Cauchy. Dado $\epsilon > 0$, existe $n_{\epsilon}$ tal que se $n, m > n_{\epsilon}$, então $d(x_{n}, x_{m}) < \frac{1}{2^{k}}\frac{\epsilon}{1+\epsilon}$.
+
+Usando a definição da métrica, temos $\frac{1}{2^{k}}\frac{d_{k}(x_{n}[k], x_{m}[k])}{1+d_{k}(x_{n}[k],x_{m}[k])} < \frac{1}{2^{k}}\frac{\epsilon}{1+\epsilon}$ implicando que $d_{k}(x_{n}[k], x_{m}[k]) < \epsilon$
+
+Logo, $(x_{n}[k])$ é Cauchy para todo $k$. E cada $X_{k}$ é completo, logo $(x_{n}[k])$ converge, digamos que converge para $x[k]$.
+
+Como $d(x_{n},x) = \sum \frac{1}{2^{k}}\frac{d_{k}(x_{n}[k], x[k])}{1+d_{k}(x_{n}[k], x_{m}[k])}$. Para dado $\epsilon > 0$, escolhemos $N >0 $ tal que $\sum_{n = N+1}^{\infty}\frac{1}{2^{n}} < \frac{\epsilon}{2}$ e existe $n_{k}$ tal que $d_{k}(x_{n}[k[, x_{m}[k]) < \frac{\epsilon}{2}$ se $n > n_{k}$.
+
+Tomando $n_{0} = \max \{n_{1}, \ldots, n_{k}, N\}$ temos que $n\geq n_{k}$ vale $d(x_{n}, x) = \sum_{k=1}^{\infty} \frac{1}{2^{k}} \frac{d_{k}(x_{n}[k],x_{m}[k])}{1+d_{k}(x_{n}[k],x_{m}[k])} =\sum_{k=1}^{N} \frac{1}{2^{k}} \frac{d_{k}(x_{n}[k],x_{m}[k])}{1+d_{k}(x_{n}[k],x_{m}[k])} + \sum_{k=N+1}^{\infty} \frac{1}{2^{k}} \frac{d_{k}(x_{n}[k],x_{m}[k])}{1+d_{k}(x_{n}[k],x_{m}[k])} < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon$
+
+Portanto, $(x_{n})_{n=1}^{\infty}$ converge e $X$ é completo.
+
+$(\Leftarrow)$ Agora vamos provar o outro sentido. Para isso, seja $(x_{n}[k])\subset X_{k}$ uma sequencia de Cauchy em $X_{k}$.
+
+Defina $x_{n} = (X_{1},\ldots, x_{n}[k], \ldots)$. Isto é, $(x_{n})$ será uma sequencia que será constante em cada $X_{i}$ com exceção de $X_{k}$, onde será $(x_{n}[k])$.
+
+Logo, $d(x_{n},x_{m}) = \sum_{i=1}^{\infty}\frac{d_{i}(x_{n}[i],x_{m}[i])}{1+d_{i}(x_{m}[i], x_{n}[i])} = \frac{1}{2^{k}}\frac{d_{k}(x_{n}[k],x_{m}[k])}{1+d_{k}(x_{n}[k], x_{m}[k])} < d_{k}(x_{n}[k], x_{m}[k])$.
+
+Como $(x_{n}[k])$ é Cauchy, para todo $\epsilon$ existe $N$ tal que se $n,m > N$, então $d_{k}(x_{n}[k], x_{m}[k]) < \epsilon$. Mas isso implica que $d(x_{n}, x_{m}) < d_{k}(x_{n}[k], x_{m}[k]) < \epsilon$. Logo, $(x_{n})$ é Cauchy em $X$
+
+Como $X$ é completo, $(x_{n})$ converge. Logo, $(x_{n}[k])$ converge. Concluindo que $X_{k}$ é completo.
+
+
+\end{solution}
+
+\question[] Seja $(X, d)$ métrico completo e $U \subset X$ aberto não-vazio. Definamos em $U$,
+\[ d_1(x, y) = d(x, y) + \left| \frac{1}{d(x, U^c)} - \frac{1}{d(y, U^c)} \right|. \]
+Verifique que $d_1$ é uma métrica equivalente à métrica $d$, e que na métrica $d_1$, $U$ é completo.
+
+
+\begin{solution}Vamos iniciar verficando que $d_1$ é uma métrica:
+
+$d_{1}(x,y) \geq 0$, pois é soma de numeros positivos.
+
+$d_{1}(x,x) = d(x,x) = 0$ e $d(x,y) \neq 0$ se $x\neq y$
+
+$d_{1}(x,y) = d_{1}(y,x)$, pois modulo é simetrico.
+
+$d_{1}(x,y) \leq d_{1}(x,z) + d_{1}(y,z)$:
+
+$d_{1}(x,y) = d(x,y) + |\frac{1}{d(x,U^{c})}-\frac{1}{d(y,U^{c})}| = d(x,y) + |\frac{1}{d(x,U^{c})} - \frac{1}{d(z,U^{c})} + \frac{1}{d(z,U^{c}} - \frac{1}{d(y,U^{c}}| \leq d(x,z) + |\frac{1}{d(x,U^{c})}-\frac{1}{d(z,U^{c})}| + d(y,z) + |\frac{1}{d(y,U^{c})}+\frac{1}{d(z,U^{c})}|$
+
+Seja $A$ aberto em $(X,d)$. Se $a \in A$, então existe $\epsilon > 0$ tal que $B(a,\epsilon) \subset A$. Seja $b \in B_{1}(a,\epsilon)$, logo $d_{1}(a,b) < \epsilon$, mas $d(a,b) < d_{1}(a,b)$, portanto $d(a,b) < \epsilon$. Concluímos que $b \in B(a,\epsilon) \subset A$. Ou seja, $B_{1}(a,\epsilon) \subset A$. Logo, $A$ é aberto em $(X,d_{1})$.
+
+Agora, seja $C$ aberto em $(X,d_{1})$ e $c\in C$. Logo, existe $\epsilon > 0$ tal que $B_{1}(c, \epsilon) \subset C$. Quero mostrar que existe $\epsilon'> 0$ tal que $B_{d}(c,\epsilon') \subset B_{1}(c, \epsilon)$.
+
+Note que se $a \in B_{1}(c, \epsilon)$, logo $a\in B(c, \epsilon)$, pois $d(a,c) \leq d_{1}(a,c) < \epsilon$. Mas não posso garatir que se $b \in B(c,\epsilon)$ então $b \in B_{1}(c,\epsilon)$. Por isso que tenho que criar um $\epsilon'$.
+
+Note que se $x,y \in U$, sem perda de generalidade, podemos supor que temos
+
+$$|\frac{1}{d(x,U^{c}} - \frac{1}{d(y,U^{c})}| = \frac{1}{d(x,U^{c}} - \frac{1}{d(y, U^{c})}$$
+
+E também temos que $d(y, U^{c}) \leq d(x,y) + d(x,U^{C})$, daí
+
+
+$$|\frac{1}{d(x,U^{c})} - \frac{1}{d(y,U^{c})}| = \frac{1}{d(x,U^{c})} - \frac{1}{d(y, U^{c})}$$
+
+$$\leq \frac{1}{d(x,U^{c})} - \frac{1}{d(x,y) + d(x,U^{C})}$$
+
+$$\leq \frac{d(x,y)}{d(x,U^{c})(d(x,y)+d(x,U^{C}))} \leq \frac{d(x,y)}{d(x,U^{c})^{2}}$$
+
+Então $$d_{1}(x,y) \leq d(x,y) + |\frac{1}{d(x,U^{c})} + \frac{1}{d(y,U^{C})} \leq d(x,y) + \frac{d(x,y)}{d(x,U^{c})^{2}}$$
+
+$$\leq (1 + \frac{1}{d(x,U^{c})})d(x,y)$$
+
+Então basta definir $\epsilon'= (1+\frac{1}{d(c,U^{c})})\epsilon$ que temos o resultado.
+
+Agora vamos mostrar que $U$ é completo com $d_{1}$:
+
+Seja $(x_{n})$ uma sequencia de Cauchy em $U$ com métrica $d_{1}$. Pela equivalencia, $(x_{n})$ é Cauchy em $U$ com métrica $d$.
+
+$U\subset X$ que é completo com a métrica $d$. Portanto, $(x_{n}) \to x$ na métrica $d$, mas pela equivalência, então $(x_{n}) \to x$ na métrica $d_{1}$.
+
+Mas $U$ é aberto, logo $x$ pode pertencer ou não a $U$. Se $x \in U$, então estamos feito.
+
+Se $x \notin U$, então $x \in U^{c}$. Logo, $d(x,U^{c}) = 0$ e $d(x_{n},U^{c}) \to 0$. Por outro lado, dado $\epsilon >0$, como $(x_{n})$ é Cauchy com metrica $d_{1}$, então existe $N$ tal que se $n, m > 0$, temos
+
+$$d_{1}(x_{m},x_{n}) = d(x_{n},x_{m}) + |\frac{1}{d(x_{n}, U^{c})} - \frac{1}{d(x_{m},U^{c})}| < \epsilon$$
+
+Mas isso é um absurdo, pois fixado qualquer $m$ posso tomar $n$ de forma que $\frac{1}{d(x_{n}, U^{c})}$ é suficientemente grande para $d_{1}(x_{m},x_{n}) > \epsilon$, pois  $d(x_{n},U^{c}) \to 0$, o que implica $\frac{1}{d(x_{n},U^{c})} \to \infty$.
+
+Portanto, $x \in U$.
+
+ \end{solution}
+
+\question[] Verifique que $f(x) = \cos(\cos x)$, $x \in (-\infty, \infty)$, é uma contração.
+
+\begin{solution}Queremos mostrar que $|cos(cos(y)) - cos(cos(x))| \leq \alpha|y-x|$ com $\alpha \in (0,1)$.
+
+Pelo teorema do valor médio, temos que $|cos(cos(y)) - cos(cos(x))| = f'(c)|x-y| $ usando que $f'(x) = sen(cos(x))\cdot sen(x)$, mas então $|f'(x)| = |sen(cos(x))sen(x)| < 1$. Pois,se $sen(x) = 1$, então $cos(x) =0$, o que implica $sen(0) = 0$ e se $sen(cos(x)) = 1$, então $sen(x) < 1$.
+
+
+Logo, $|f(y) -f(x)| < |x-y|$. Mas isso não é suficiente, pois $\alpha $ é uma constante e uma constante que independente de $x,y$.
+
+Mas nosso argumento é suficiente para ver que $sen(cos(x))sen(x) \leq sen(cos(x)) \leq \max_{y \in [-1,1]} sen(y) = sen(1) < 1$. Logo, nosso $\alpha = sen(1)$.
+
+Portanto, uma contração.
+ \end{solution}
+ 
+\question[] Seja $K$ m\'etrico compacto e $f : K \to K$ tal que, para $x \neq y$, $x, y \in K$, tem-se
+    \[ d(f(x), f(y)) < d(x, y). \]
+    Demonstre que $f$ tem um \'{u}nico ponto fixo $a \in K$ e que $\lim_{n \to \infty} f^n(x) = a$ para todo $x \in K$.
+ 
+\begin{solution} 
+
+Vamos começar mostrando que se existe ponto fixo, então ele é único. Suponhamos que $x$ e $y$ são pontos fixos. Logo, $d(f(x),f(y)) = d(x,y) < d(x,y)$ (Contradição).
+
+Agora, vamos mostrar que existe ponto fixo.
+
+A função $g(x) = d(x,f(x))$ é contínua e $K$ é compacto, logo $g$ possui minimo em $K$ por $K$ ser compacto. Seja $y$ o ponto de minimo e suponhamos $y \neq f(y)$.
+
+Então $g(f(y)) = d(f(y),f(f(y))) < d(y,f(y)) = g(y)$. Contrariando a minimalidade de $g(y)$. Logo, $y= f(y)$ e o ponto fixo existe.
+
+Agora vamos mostrar que a sequencia $(f^{n}(x))_{n=1}^{\infty}$ converge para todo $x$ e que $lim f^{n}(x) = a$ para todo $x$.
+
+Primeiro, notemos que $d(f^{n}(x),a) = d(f^{n}(x),f(a)) < d(f^{n-1}(x), a)$.
+
+Portanto, $d(f^{n}(x), a)$ forma uma sequencia decrescente em $\mathbb{R}$. Tal sequencia é limitada inferiormente por $0$. Sequencia monotona e limitada em $\mathbb{R}$, então é convergente.
+
+Então digamos que $\lim_{n \to \infty} d(f^{n}(x), a) = b$.
+
+Agora, por $K$ ser compacto, existe subsequencia $f^{n_{k}}(x)$ convergente, digamos que $f^{n_{k}}(x)$ converge para $c$.
+
+Então vale que $\lim_{n_{k}\to \infty} d(f(f^{n_{k}}(x)), a) = d(f(c),a)$, mas também vale que  $$\lim_{n_{k}\to \infty} d(f(f^{n_{k}}(x)), a) = d(c,a)$$.
+
+Como o ponto fixo é unico, então $k=a$. 
+
+Se $(f^{n}(x))_{n=1}^{\infty}$ não convergir para $k = a$. Então, existe uma subsequencia que converge para $k'\neq a$, o que é impossivel.
+
+ \end{solution} 
+
+\end{questions}
+
+
+
+\end{document}

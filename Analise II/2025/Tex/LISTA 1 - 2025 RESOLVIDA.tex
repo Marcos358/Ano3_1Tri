@@ -1,0 +1,233 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\lhead{Analise II}
+\rhead{Solução - Lista 1}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE Analise II\\
+    \LARGE Lista 1\\[0.5em]
+    
+    \large Professor: Paulo Klinger\par
+    \large Monitor: André Lelis\par
+    
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+
+\question[]Em um espaço vetorial, $\lambda v = \overline{0} \iff \lambda = 0$ ou $v = \overline{0}$.
+	
+	\begin{solution}
+	Suponhamos $\lambda v = \overline{0}$.
+	Se $\lambda \neq 0$, então existe $\lambda^{-1}$, pois $\lambda \in \mathbb{K}$, onde $\mathbb{K}$ é um corpo. Segue, multiplicando ambos os lados da equação por $\lambda^{-1}$ que $v = \overline{0}$.
+	
+	Se $\lambda = 0$, então $0v = (0+0)v = 0v + 0v$. Somando $-0v$ de ambos os lados, sai que $0v = \overline{0}$.
+	
+	Por outro lado, $v = 0$, então $\lambda \overline{0} = \lambda (\overline{0}+\overline{0}) = \lambda \overline{0} + \lambda \overline{0}$. Logo, $\lambda \overline{0} = \overline{0}$.
+	\end{solution}
+
+
+	
+ \question[]Verifique que $\ell ^{0} = \{(x_{n})_{n=1}^{\infty}: x_{n} \in \mathbb{R}, n\geq 1\}$ é um espaço vetorial.
+
+    \begin{solution}
+           
+          
+            Seja $\alpha \in \mathbb{R}$ e $x = (x_{n})_{n=1}^{\infty} \in \ell^{0}$. Segue que $\alpha x = (\alpha x_{n})_{n=1}^{\infty}$. Como cada $\alpha x_{n} \in \mathbb{R}$, segue que $\alpha x \in \ell^{0}$. Em particular, se $\alpha = 1$, então $\alpha x = x$ e se $\alpha = \beta + \gamma$, então $\alpha x = (\beta + \gamma)x = ((\beta + \gamma)x_{n}) = \beta x + \gamma x$.\\
+            $\overline{0} = (0)_{n}^{\infty}$ a sequencia de $0$ pertence a $\ell^{0}$. De onde temos que $x + \overline{0} = (x_{n}+0) = (x_{n}) = x$ e $x -x = (x_{n} + (-x_{n}))_{n}^{\infty} = \overline{0}$.
+            Além disso, $x + y = (x_{n}+y_{n})_{n}^{\infty} = (y_{n}+x_{n})_{n=1}^{\infty} \in \ell^{0}$. E $(x +y) + z = x + (y+z)$, pois somamos coordenada a coordenada e as coordenadas são reais, portanto associativas.
+            
+            Portanto, $\ell^{0}$ é espaço vetorial.
+            
+            
+    \end{solution}	
+
+\question[] Verifique que $\ell^{2} : = \{x \in \ell^{0}| \sum x^{2}_{n} < \infty\}$ é um subespaço vetorial de $\ell^{0}$ 
+
+ \begin{solution}           
+            Por definição, $\ell^{2}\subset \ell^{0}$. Note que $(0_{n})_{n=1}$ está em $\ell^{2}$. 
+            
+            Seja $\alpha \in \mathbb{R}$ e $x \in \ell^{2}$. Temos que  $\sum x_{n}^{2} < \infty$, logo $\sum (\alpha x_{n})^{2} = \alpha^{2}\sum x_{n}^{2} < \infty$. Portanto, pertence a $\ell^{2}$. Isso também mostra que $-x \in \ell^{2}$.
+            
+            Agora vamos mostrar que é fechado para soma: Seja $x,y \in \ell^{2}$. Queremos estudar $x+y$. 
+            
+           Temos que $\sum (x_{n}+y_{n})^{2} = \sum (x_{n})^{2} + 2\sum x_{n}y_{n} + \sum (y_{n})^{2}$. Como $x, y \in \ell^{2}$, então sabemos que só falta mostrar que $\sum x_{n}y_{n}$ é convergente.
+            
+          Note que $x_{n}y_{n} \leq |x_{n}||y_{n}| \leq \max \{x_{n}^{2},y^{2}_{n}\} \leq x^{2}_{n} + y^{2}_{n}$. Portanto, $\sum x_{n}y_{n} <  \sum x_{n}^{2} + \sum y_{n}^{2} < \infty$.
+            
+           Concluímos então que é fechado por soma.
+\end{solution}            
+            
+\question[]Seja $0 < p < \infty$ e $\ell^{p} = \{x \in \ell^{0} | \sum |x_{n}|^{p}< \infty \}$. Então, $\ell^{p}$ é um subespaço vetorial de $\ell^{0}$.
+    
+	\begin{solution}Mesmo raciocinio da questão anterior mostra associatividade e que podemos multiplicar por escalar. O que temos que mostrar é somente que é fechado pela soma, isto é, que a soma de dois elementos do conjunto pertence ao conjunto.
+
+Na questão anterior, nós simplesmente fizemos uma expansão do binomial e vimos que teríamos que limitar $\sum x_{n}y_{n}$. Entretanto, nesta questão, tal procedimento ia dar um expressão muito maior, muito mais complicada para entendermos o que deveriamos limitar. Portanto, vamos pensar em outra estratégia.
+
+Para cota superior, uma boa tentativa é sempre usar desigualdade triangular. Lembre que se $x, y \in \ell^{p}$, então queremos mostrar que $\sum (x_{n}+y_{n})^{p} < \infty$ sabendo que $\sum |x_{n}|^{p}< \infty$. Segue da desigualdade triangular que $|x_{n}+y_{n}| \leq |x_{n}|+|y_{n}|$. Eu quero poder elevar os dois lados a $p$, mas como comentei anteriormente, isso implicaria em aparecer varios termos na expansão, então quero sumir com a soma no lado direito. Mas eu sei que $|x_{n}|+ |y_{n}| \leq 2 \max \{|x_{n}|,|y_{n}|\}$.
+
+Portanto, $|x_{n}+y_{n}| \leq |x_{n}|+|y_{n}| \leq 2 \max \{|x_{n}|,|y_{n}|\}$. Elevando a $p$, temos $|x_{n}+y_{n}|^{p} \leq 2^{p} \max \{|x_{n}|,|y_{n}|\}^{p} \leq 2^{p} |x_{n}|^{p} + 2^{p}|y_{n}|^{p}$.
+
+Logo, $\sum (|x_{n}+y_{n}|)^{p} \leq 2^{p}\sum |x_{n}|^{p}+ 2^{p}\sum |y_{n}|^{p} < \infty$. 
+\end{solution}
+
+
+
+    \question[] Demonstre que:\begin{parts}
+	\part Os elementos neutros da adição e multiplicação são únicos.
+	\part Se $a\cdot b = 0$, então $a = 0$ ou $b = 0$.
+	\part Verifique que $(-a)(-b) = ab$ e $a.0 = 0$
+	\part $\mathbb{Z}_{2} = \{\overline{0},\overline{1}\}$ com $\overline{1}+\overline{1} = \overline{0}$ e $\overline{1}\cdot \overline{1} = \overline{1}$ é um corpo com dois elementos.
+	\part Se $a + b = a$ para algum $a\in K$, então $b = 0$
+	\part Se $a + b = 0$, então $b = -a$
+	\part Qual o valor de $-(-a)$?
+
+	\droppoints \end{parts}
+    
+    \begin{solution}
+            \begin{parts}
+    \part Suponha que existam $0$ e $0'$. Então, $x + 0 = x = x + 0'\ (1)$, mas existe $(-x)$ tal que $x + (-x) = 0$, logo subtraimos somamos $(-x)$ de ambos os lados em $(1)$ e obtemos $0 = 0'$.
+           Suponhamos $1$ e $1'$ elementos neutros da multiplicação. Logo, $1\cdot a = 1'\cdot a$ para $a\neq 0$ por definição. Como $a\neq0$, ele tem inverso multiplicativo, multiplicamos pelo inverso multiplicativo de ambos, temos $1 = 1'$.        
+	    
+	\part Suponhamos que $a \neq 0$, então existe $a^{-1}$ tal que $a\cdot a^{-1} = 1$. Portanto, se $a\cdot b = 0$, então multiplicamos ambos os lados por $a^{-1}$, de onde concluímos que $b = 0$.
+    
+    \part Vamos provar primeiro que $-(ab) = (-a)b$. Note que $ab + (-a)b =(a+(-a) b = 0b$ Mas $0b + 0b = b(0+0) = 0b$, logo $ 0b = 0$. Portanto, $-ab = (-a)b$.
+            
+    Mesmo raciocinio mostra que $-ab = a(-b)$.
+            
+   	Pelo item $f$, $ab = -(-ab)$. Mas $-ab = (-a)b$, e segue que $ab = -((-a)b) = -(b(-a)) = (-b)(-a) = (-a)(-b)$.    
+    
+	\part Vamos verificar as propriedades que o professor enunciou:
+      \begin{itemize}
+   	\item $\overline{1} + \overline{0} = \overline{1} + \overline{1} + \overline{1} = \overline{0} + \overline{1}$. Para $\overline{0} + \overline{0}$ e $\overline{1}+\overline{1}$ trivial.
+   	
+	\item Vou provar primeiro que $\overline{0} + \overline{1} = \overline{1}$.
+   	
+   	Suponha que não seja, então $\overline{0} + \overline{1} = \overline{0}$, pois só há dois elementos. Então $\overline{1} + \overline{1} +\overline{1} = \overline{1} + \overline{1}$. Isso implicaria $\overline{0} = \overline{1}$. Logo, não é o caso.
+   	\item Agora a gente tem dois casos só: $(1+ 0) + 1 = 1 + 1 = 0 = 1+(0+1) = 1+ 1$. $(0+1) + 1 = 1+1 = 0 = 0 +(1+1) = 0 + 0 = 0$. (Isso prova que $(a+b)+c = a+(b+c)$, como só tem $\overline{1}$ e $\overline{0}$, então só essas possibilidades de a,b,c tirando as triviais).
+   	
+   	\item $1+1 = 0$ e $0+0 = 0$. (Todo elemento tem inverso aditivo)
+   	
+   	\item $1\cdot 0 = 1\cdot 1 + 1\cdot 1 = 0$.
+   	
+   	\item $1(1+0) = 1\cdot 1 = 1 = 1 +1\cdot0 $ e $0(1+0) = 0.1 = 0 = 0.1+0$ (Distributividade).
+  
+\end{itemize}   	
+            
+    \part Como $K$ é corpo, então existe $-a$ tal que $a+(-a) = 0$.
+    Na equação $a + b = a$ somamos $-a$ de ambos os lados e obtemos $b = 0$.
+    \part Novamente, somamos $-a$ de ambos os lados da equação e obtemos $b = -a$ 
+    \part Sabemos que $a + (-a) = 0$. Aplicando o item anterior, temos que $a = -(-a)$
+
+               \end{parts}
+    \end{solution}
+
+\question[]Qual a dimensão de $\mathbb{C}$ como espaço vetorial sob os reais?
+
+\begin{solution} Por definição, $\mathbb{C} = \{a+ib | a,b \in \mathbb{R}\}$. Assim, o palpite mais obvio é que $\{1,i\}$ formam uma base de $\mathbb{C}$ sob $\mathbb{R}$.
+
+É claro que $\{1,i\}$ forma um conjunto gerador, pois dado $a+ib$, esse numero é escrito como a combinação $1\cdot a$ e $b\cdot i$.
+
+Suponha que não seja linearmente independente, então existem $a,b \in \mathbb{R}$ tais que $a+ib = 0$, logo $i = -\frac{a}{b} \in \mathbb{R}$. Absurdo!. \end{solution}
+
+\question[] 
+    Verifique que $\mathbb{Q}(\sqrt{3}) = \{a+b\sqrt{3}| a, b \in \mathbb{Q}\}$ é um corpo.
+    
+    \begin{solution}
+         Sejam $a+b\sqrt{3}$ e $c+d\sqrt{3}$ elementos de $\mathbb{Q}(\sqrt{3})$. É obvio que $0$ e $1$ também são elementos do conjunto.
+    
+    	$a+b\sqrt{3} + c+d\sqrt{3} = (a+c) + (b+d)\sqrt{3}$. Logo, a soma pertence. Além disso, a soma é comutativa e associativa, pois todos os elementos pertencem aos reais que são comutativos e associativos. Da mesma forma, $(a+b\sqrt{3})(c+d\sqrt{3}) = ac+3bd + (ad+bc)\sqrt{3} \in \mathbb{Q}(\sqrt{3})$ e vale comutatividade e associatividade, pois todos os elementos são reais.
+    
+    	Para ver que tem inverso aditivo em $\mathbb{Q}(\sqrt{3})$, basta definir $c = -a$ e $d = -b$.
+    
+    	Para ver que qualquer elemento diferente de $0$ tem inverso multiplicativo:
+    
+    Se $a + 0\sqrt{3}$, então o inverso é $a^{-1}$. Se $b\sqrt{3}$, então o inverso é $b^{-1}\frac{\sqrt{3}}{3}$
+    	
+    Dado $a+b\sqrt{3}$ com $a,b \in \mathbb{Q}^{*}$, vimos que  $(a+b\sqrt{3})(c+d\sqrt{3}) = ac+3bd + (ad+bc)\sqrt{3} \in \mathbb{Q}(\sqrt{3})$. Queremos que achar $c$ e $d$ tais que $ad+bc = 0$ e $ac+3bd = 1$
+    
+    Dá primeira equação, tiramos que $d = -\frac{bc}{a}$. Substituindo na segunda, temos que $c = \frac{a}{a^{2}-3b^{2}}$ . Logo, $d = \frac{-b}{a^{2}-3b^{2}}$.
+    
+    Portanto, sempre há inverso multiplicativo.
+    
+    Agora é só verificar a distributividade em relação a soma.
+    \end{solution}
+    
+\question[] Sejam $V$ e $W$ espaços vetoriais. Então o produto cartesiano, $V\times W = \{(x,y): x\in V, w\in W \}$ também é espaço vetorial se definirmos 
+
+$$(v,w) + (v',w') = (v+v', w + w')$$
+
+$$\lambda(v,w) = (\lambda v, \lambda w)$$
+
+
+Verifique essa afirmação e calcule a dimensão de $V\times W$ para $V$ e $W$ de dimensão finita.
+
+\begin{solution}
+
+
+Seja $\{v_1,\ldots,v_n\}$ base de $V$ e $\{w_1,\ldots,w_m\}$ base de $W$.
+
+Afirmação: Seja $B = \{(v_{1},0),\ldots, (v_{n},0)\}$ e $B' = \{(0,w_{1}),\ldots, (0,w_{m})\}$. $B\cup B'$ é base $V\times W$:
+
+- Gerador: Seja $(x,y) \in V\times W$. Segue que $x \in V$, $y\in W$, logo $x = \sum \lambda_{i}v_{i}$ para alguns $\lambda_{i}$ e $y = \sum \omega_{i}w_{i}$. Logo, $(x,0) = \sum \lambda_{i} (v_{i},0)$, $(0,y) = \sum \omega_{i}(0,w_{i})$.
+
+Então $(x,y) = \sum \lambda_{i}(v_{i},0) + \sum \omega_{i}(0,w_{i})$.
+
+- Linearmente independente: $(0,0) \in V\times W$. Mesmo raciocino anterior implica que $0 = \sum \lambda_{i}v_{i}$, mas $v_{i}$ formam base, logo $\lambda_i = 0$. Analogo para $0 \in W$.
+
+Portanto, temos que é base. E o numero de elementos da base é $\dim V + \dim W$.
+ \end{solution}
+    
+\question[]Sejam $U_{1}$, $U_{2}$ dois subespaços do espaço vetorial $V$. Mostre que $U_{1}\cup U_{2}$ é subespaço se, e somente se $U_{1}\subset U_{2}$ ou $U_{2}\subset U_{1}$.
+
+\begin{solution}$(\Rightarrow)$ Vamos mostrar que $U_{1} \subset U_{2}$ ou $U_{2} \subset U_{1}$. Seja $u \in U_{1}$ e $u_{2} \in U_{2}$
+
+$u_{1} + u_{2} \in U_{1} \cup U_{2}$, pois $U_{1} \cup U_{2}$ é subespaço Logo, $u_{1}+ u_{2} = u \in U_{1} \cup U_{2}$. Portanto, $u \in U_{1}$ ou $u \in U_{2}$. Se $u \in U_{2}$, então, $u_{1} = u - u_{2}$. Mas $U_{2}$ é subespaço, logo $u-u_{2} \in U_{2}$, concluindo que $u_{1} \in U_{2}$ Portanto, $U_{1} \subset U_{2}$.
+
+$(\Leftarrow)$ Se $U_{1} \subset U_{2}$, entõo $U_{1} \cup U_{2} = U_{2}$ que é subespeaço por hipotese.\end{solution}
+
+\question[]Seja $f \in V'\setminus \{0\}$. Demonstre que $f(V) = K$.
+
+\begin{solution} Seja $x \in Im(f)$, $x \neq 0$. Então existe $y \in V$ tal que $f(y) = x$. Agora, seja $a \in K$, como $K$ é um corpo, então existe $p \in K$ tal que $xp = a$ (só tomar $p = \frac{a}{x}$). Logo, $pf(y) = px = a$, mas $pf(y) = f(py)$. Portanto, todo $a \in K$ está na imagem de $f$. \end{solution}
+
+\question[]Encontre um espaço vetorial $V$ e uma transformação linear injetiva $T: V\to V$ que não é invertivel.
+
+\begin{solution}Primeiro, note que se $T$ é injetiva e não invertivel, então ela não pode ser sobrejetiva, pois transformações bijetivas são invertiveis.
+
+Além disso, pelo toerema do Nucleo e Imagem, se $T:V \to V$ é injetiva e $V$ tem dimensão finita, então é sobrejetiva. Logo, nós queremos que $V$ tenha dimensão infinita.
+
+Nesta lista, vimos o espaço $\ell^{0}$ que é um espaço de dimensão infinita. Então vamos tentar criar um exemplo nesse espaço.
+
+Seja $T: \ell^{0}\to \ell^{0}$. Então $T(x_{1},\ldots, x_{n},\ldots) = (x^{*}_{1},\ldots, x^{*}_{m},\ldots)$. Queremos que só $T(0) = 0$. Observe que $x_{1} \in \mathbb{R}$, então se fizermos um shift $T(x_{1},\ldots, x_{n},\ldots) = (0,x_{1},\ldots, x_{m},\ldots)$ temos uma transformação injetiva e mais do que isso não é sobrejetiva, pois $\ell^{0}$ contém sequencias que o primeiro elemento não é 0, mas tais sequencias não estão na imagem de $T$.
+
+Resta conferir se realmente é linear, isto é, $T(x+\lambda y) = T(x) + \lambda T(y)$. \end{solution}
+
+\question[]Seja $V$ um espaço vetorial de dimensão $n \in \mathbb{N}$. Mostre que um subconjunto $W$ de $V$ é um subespaço se e somente se existe uma transformação linear $T: V\to \mathbb{R}^{n}$ tal que $\ker T = W$.
+
+\begin{solution}Uma observação inicial interessante para esse exercício é que dada uma transformação linear qualquer $T: X \to X$ e $B = \{x_{1},\ldots, x_{n}\ldots...\}$ uma base de $X$, então uma vez definida os valores de $T$ na base, isto é, $T(x_{n})$ está definido, então toda a $T$ está definida, pois $x = \sum_{i=1}^{k}\lambda_{i} x_{i}$, logo $T(x) = \sum_{i=1}^{k}\lambda_{i}T(x_{i})$, ou seja, só dependeu dos valores na base. Isso significa que se eu conseguir uma base para $W$ e mandar ela para $0$, eu basicamente tenho o exercício feito. Vamos ver isso com detalhes agora. 
+
+$(\Rightarrow)$Afirmáção: Um conjunto linearmente independente de $W$ pode ser extendida para uma base de $V$. Ou seja, seja podemos tomar uma base $B = \{w_{1},\ldots, w_{k}, w_{k+1},\ldots w_{n}\}$, onde $\{w_{1},\ldots, w_{k}\}$ é uma base de $W$. 
+
+Prova que posso fazer isso: Seja $B'$ um conjunto linearmente independente em $W$. Se esse conjunto é o maior conjunto linearmente independente possível, eu mantenho ele. Caso contrário, eu adiciono o elemento de $W$ linearmente independente em relação a esse conjunto que não pertence a conjunto. Observe que esse processo é finito, pois $B'$ tem que gerar um espaço de dimensão finita.
+
+Então supondo que $B'$ é um conjunto linearmente indepedente e com a cardinalidade maior possível, então se $B'$ gera $V$, então $B'$ é uma base de $V$. Se não gera, então existe $v_{1} \in V$ tal que $B'\cup v_{1}$ é linearmente independente, se é uma base de $V$, fim. Caso contrário, tomo $v_{2}$ que não pertence ao gerado por $B'\cup v_{1}$ e repito o processo. $V$ tem dimensão finita, esse processo é finito. Logo, extendi um conjunto gerador linearmente de $W$ para uma base $B$ de $V$. Escrevemos $B = \{w_{1},\ldots, w_{k-1}, v_{k},\ldots, v_{n}\}$
+
+Definimos a transformação linear $T(v) = T(\sum\lambda_{i}w_{i}) = (0,\ldots, 0, \lambda_{k},...,\lambda_{n})$ 
+
+$\ker T = \{x | T(x) = 0\}$ Se $x \in W$, então $T(x) = 0$ pela definição de T. Se $T(x) = 0$, então $x = \sum \lambda_{i}w_{i}$ com $\lambda_{i} = 0$ para $i\geq k$, logo $x \in W$. 
+
+$(\Leftarrow)$ Para a volta basta mostrar que $\ker (T)$ é subespaço. Seja $a,b \in \ker$ e $\alpha \in \mathbb{K}$. $T(a+\alpha b) = T(a) +\alpha T(b) = 0$, logo $a+\alpha b \in \ker$. Portanto, é subespaço.\end{solution}
+
+\end{questions}
+
+\end{document}

@@ -1,0 +1,344 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}  %For centering solution box
+\lhead{Analise II}
+\rhead{Solução - Lista 2}
+% \chead{\hline} % Un-comment to draw line below header
+\thispagestyle{empty}   %For removing header/footer from page 1
+
+\begin{document}
+
+\begingroup  
+    \centering
+    \LARGE Analise II\\
+    \LARGE Lista 2\\[0.5em]
+    
+    \large Professor: Paulo Klinger\par
+    \large Monitor: André Lelis\par
+    
+\endgroup
+\rule{\textwidth}{0.4pt}
+\pointsdroppedatright   %Self-explanatory
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução}\enspace}   %Replace "Ans:" with starting keyword in solution box
+
+\begin{questions}
+\question[]Para $x, y$ inteiros, definamos $x \equiv y \mod(2)$ se $x - y$ for par (i.e. $x - y \in 2 \mathbb{Z}$). Então $\equiv \mod(2)$ é uma relação de equivalência e
+    \[
+        \mathbb{Z}_2 := \mathbb{Z}/ \equiv = \{\bar{0}, \bar{1}\}.
+    \]
+    
+\begin{solution}Para mostrar que é uma relação de equivalência, nós temos que mostrar que satisfaz as seguintes propriedades:
+    
+    \begin{enumerate}
+    \item $x \equiv x$, ou seja, a relação é reflexiva.
+    \item $x \equiv y$, então $y\equiv x$, ou seja, a relação é simétrica.
+    \item Se $x \equiv y$ e $y\equiv z$, então $x\equiv z$, ou seja, a relação é transitiva.
+\end{enumerate}
+    
+    No caso, nossa relação $\equiv$ aqui é $x\equiv y$ se $x - y \in 2\mathbb{Z} = \{2z: z\in \mathbb{Z}\}$. Isso é o mesmo que dizer que $2$ divide $x-y$.
+    
+    Então vamos provar que satisfaz essas 3 propriedades:
+    
+	\begin{enumerate}
+\item Seja $x \in \mathbb{Z}$, então $x - x = 0 = 2\cdot 0$. Logo, $x -x \in 2\mathbb{Z}$. Portanto, $x \equiv x$.
+
+\item Se $x\equiv y$, então $x-y = 2w$, logo $y-w = 2(-w) \in 2\mathbb{Z}$. Portanto, $y\equiv w$.
+
+\item Seja $x \equiv y$ e $y\equiv z$. Temos que $x-z = x - z + (y-y) = (x-y) + (y-z)$.
+
+Como $x\equiv y$ e $y\equiv z$, então $x - y = 2w$ para algum $w \in \mathbb{Z}$ e $y-z = 2w'$ para algum $w'\in \mathbb{Z}$. Logo, $x-z = 2w + 2w'= 2(w+w') \in 2\mathbb{Z}$. Portanto, $x \equiv z$
+\end{enumerate}
+
+Agora precisamos provar que só existe $2$ classes de equivalência: $\overline{0}$ e $\overline{1}$. O que temos que mostrar é que se $x \in \mathbb{Z}$, então $x \equiv 0$ ou $x \equiv 1$.
+
+Observe que se $x \in 2\mathbb{Z}$, então $x - 0 \in 2\mathbb{Z}$, logo $x \equiv 0$.
+
+Se $x \in 2\mathbb{Z}$, então $x = 2k+1$, pois a divisão por 2 deixa resto $0$ ou $1$. Logo $x -1 = 2k$, poranto $x \equiv 1$.     \end{solution}    
+
+
+    \question[] Seja $m \geq 2$ um natural. Dizemos que $m$ divide $x \in \mathbb{Z}$ se existe $k \in \mathbb{Z}$ tal que $k \cdot m = x$. Para $x, y$ inteiros definimos
+    \[
+        x \equiv y \mod(m)
+    \]
+    se $m$ dividir $x - y$. Verifique que $\equiv$ é uma relação de equivalência em $\mathbb{Z}$ e que $\mathbb{Z}_m = \mathbb{Z}/ \equiv$ tem $m$ elementos.
+
+\begin{solution} Para provar que é uma relação de equivalencia, a mesma demonstração do item anterior funcionar para $m$ no lugar de $2$.
+    
+Para provar que $m$ classes de equivalência, eu vou provar que existe a divisão euclidiana. Isto é, dado $x \in \mathbb{Z}$ e $m \in \mathbb{N}, m\geq 2$, então existem $q \in \mathbb{Z}$ e $0\leq r < m$, $r\in \mathbb{N}$ tais que $x = mq + r$. 
+    
+Demonstração: Por indução: se $x = 0$, então basta tomar que $q=0$ e $r=0$.
+
+    Suponhamos que seja verdade para $x = n$, vamos provar para $x = n+1$.
+    
+    Por hipotese, $n = qm + r$, com $r < m$. Então $r = m -1$ ou $r<m-1$.
+    
+    Se $r = m- 1$, então $n = qm+ m -1$. Logo, $n+1 = (q+1)m$. E tá provado.
+    
+    Se $r < m-1$, então $r+1 < m$. Como $n = qm + r$, então $n+1 = qm + (r+1)$, como $r+1 < m$, então chame isso de $r'$ e temos o resultado.
+    
+    
+Observe que a demonstração acima também mostra que cada resto $r$ entre $0$ e $m-1$ é atingido. Como existem $m$ restos, segue que tem $m$ classes, pois se a $n$ deixa resto $r$, então $n \equiv r \mod (m)$, pois $n = qm +r$, logo $n-r = mq$. \end{solution}
+    
+\question[]Seja $V = \{ f : [-1,1] \to \mathbb{R} \mid f \text{ contínua} \}$ com produto interno
+    \[
+        \langle f, g \rangle = \int_{-1}^{1} f(t) g(t) dt.
+    \]
+    Sejam $f_0(t) = \frac{1}{\sqrt{2}}, \quad f_n(t) = \cos(n \pi t), \quad n \geq 1$. Verifique se a família $\{ f_n(\cdot) \mid n \geq 0 \}$ é ortonormal.
+    
+\begin{solution}Temos que mostrar duas coisas nesse exercício:
+    
+ \begin{enumerate}
+    \item $\langle f_n,f_n \rangle = 1$ para todo  $n \in \mathbb{N}_{0}$
+    \item $\langle f_n,f_m \rangle = 0$ quando $n\neq m$.
+\end{enumerate}  
+    
+    Vamos mostrar:
+    
+    \begin{enumerate}
+\item $\langle f_{0},f_{0}\rangle = \int_{-1}^{1}\frac{1}{\sqrt{2}}\frac{1}{\sqrt{2}} = 1$.
+
+$\langle f_{n},f_{n} \rangle =  \int_{-1}^{1}cos(n\pi t) cos(n\pi t) = \int^{1}_{-1}cos^{2}(n\pi t)dt$
+
+Vamos usar que $cos^{2}(a) = \frac{1+ cos 2a}{2}$ (Isso foi dado quando caiu em prova).
+
+Portanto, $\int^{1}_{-1}cos^{2}(n\pi t)dt = \int_{-1}^{1}\frac{1+cos(2\pi nt)}{2}dt = 1 + \frac{sen(2n\pi t)}{4n\pi} = 1$.
+
+\item $\langle f_{n},f_{m} \rangle =  \int_{-1}^{1}cos(n\pi t) cos(m\pi t) = \int_{-1}^{1} \frac{cos((n+m)\pi t) + cos((n-m)\pi t)}{2}dt$
+
+$=\frac{1}{2}\frac{sen(n+m)\pi t}{(n+m)\pi} + \frac{1}{2}\frac{sen(n-m)\pi t}{(n-m)\pi} = 0$.
+
+Também temos $\int_{-1}^{1}f_{0}f_{m} = \int_{-1}^{1}\frac{1}{\sqrt{2}}cos(2\pi m t)dt = 0$.
+\end{enumerate}        \end{solution}
+    
+\question[]Seja $V$ um espaço vetorial, e $L(V,V)$ o espaço vetorial de todas as transformações lineares $S: V \to V$. Fixe um vetor não nulo $u \in V$ e seja
+    \[
+        L_u = \{ S \in L(V,V) \mid u \text{ é um autovetor de } S \}.
+    \]
+    Mostre que $L_u$ é um subespaço linear de $L(V,V)$.    
+
+\begin{solution}
+Sejam $x, y \in \mathcal{L}_{u}$, e $\lambda \in \mathbb{K}$. Como $x,y \in \mathcal{L}_{u}$, então $x(u) = \mu u$ e $y(u) = \alpha u$. Então $(x+\lambda y)(u) = x(u) + \lambda y(u) = \mu u+ \lambda \alpha u = (\mu +\lambda \alpha) u$. Logo $x+\lambda y \in L_{u}$.
+    \end{solution}    
+
+\question[]Seja $T: \mathbb{R}^2 \to \mathbb{R}^2$ definido por
+    \[
+        T(v_1, v_2) = (v_1 + 2v_2, 2v_1 + 3v_2).
+    \]
+    Calcule os autovalores de $T$.    
+
+\begin{solution}Relembre: $z$ é um auto-vetor e $\lambda$ um auto-valo correspondendo a $v$ se e somente se $T(z) = \lambda z$ e $z \neq 0$.
+
+Logo, $(T-\lambda Id)z = 0$. Observe que $z = 0$ sempre satisfaz, mas queremos justamente $z \neq 0$, ou seja, o "sistema" $T-\lambda Id$ tem mais de uma solução. Isto é equivalente ao sistema ser indeterminado.
+    
+Como estamos em dimensão finita e $T$ pode ser representada por uma matriz quadrada, isso é equivalente ao determinante ser igual a $0$.
+    
+Vamos primeiro então montar a matriz que representa a transformação $T$
+    
+$T(1,0) = (1,2)$ e $T(0,1) = (2,3)$. Portanto, na forma matricial temos
+    
+$$T(x,y) = \begin{pmatrix}
+    1& 2\\
+    2& 3
+\end{pmatrix} \begin{pmatrix}
+x\\ y
+\end{pmatrix}    $$
+
+Portanto, temos que calcular $det(T-\lambda Id) = det \begin{pmatrix}
+1-\lambda & 2\\
+2& 3-\lambda
+\end{pmatrix} = 0$
+
+Então temos $(1-\lambda)(3-\lambda) - 4 =0 \Rightarrow 3-3\lambda -\lambda +\lambda^{2} - 4 =0 \Rightarrow \lambda^{2} - 4\lambda -1 = 0$. Portanto, $\lambda = 2\pm \sqrt{3}$.
+
+Outro jeito de pensar essa questão é usar as definições mesmo:
+
+Teriamos que satisfazer $T(v_{1},v_{2}) = \lambda(v_{1},v_{2})$. Então, $v_{1}+2v_{2} = \lambda v_{1}$ e $2v_{1}+3v_{2}  = \lambda v_{2}$.
+
+E isso é o sistema
+
+$$ (1-\lambda) v_{1} +2v_2 = 0 $$
+
+	$$2v_{1} + 3\lambda v_{2} = 0$$
+
+Agora, esse sistema vai ser indefinido, se o determinante for zero, e segue as mesmas contas de antes.
+    \end{solution}
+
+\question[]Verifique que
+    \[
+        \langle x, y \rangle = \frac{1}{2} \left( |x+y|^2 - |x|^2 - |y|^2 \right)
+    \]
+    para o produto interno $\langle x,y \rangle$
+
+\begin{solution}$\langle x, x \rangle = |x|^{2}$ a norma induzida pelo produto interno.
+
+Normalmente, quando temos um problema como esse, a estratégia é sair do lado complicado para chegar no lado fácil. Ou seja, vamos tentar sair do lado direito para o lado esquerdo.
+
+Do produto interno, $|x+y|^{2} = \langle x+y, x+y \rangle$. Vamos aplicar as propriedades do produto interno.
+
+$\langle x+y, x+y \rangle = \langle x, x+y \rangle + \langle y, x+y \rangle = \langle x, x \rangle + \langle x,y \rangle + \langle y,x \rangle + \langle y,y \rangle$.
+
+Isolando $\langle x,y\rangle$ temos o resultado.  \end{solution}
+
+
+\question[] Seja $X$ um espaço vetorial com produto interno e seja $S$ um conjunto ortogonal de vetores não nulos (isto é, se $x, y \in S$, então $\langle x, y \rangle = 0$). Mostre que $S$ é um conjunto linearmente independente.
+
+
+\begin{solution}Suponhamos que $S$ não é linearmente independente. Então existem $x, x_{1},\ldots, x_{n} \in S$ tais que $x = \sum \lambda_{i}x_{i}$, com $\lambda_{i} \neq 0$ para todo $i$.
+
+Por outro lado, sabemos que $\langle x,x \rangle > 0$. 
+
+Usando a expressão anterior para $x$, temos
+$\langle x, \sum_{i=1}^{n}\lambda_{i} x_{i}\rangle = \sum \lambda_{i}\langle x, x_{i}\rangle$.
+
+Mas, por hipotese, $\langle x, x_{i} \rangle = 0$, já que pertencem a $S$. Segue, então que
+
+$\langle x, \sum_{i=1}^{n}\lambda_{i} x_{i}\rangle = \sum \lambda_{i}\langle x, x_{i}\rangle = 0 = \langle x, x\rangle $ \end{solution}
+
+\question[] Seja $V = \{ f : [-1,1] \to \mathbb{R} \mid f \text{ contínua} \}$ com produto interno
+    \[
+        \langle f, g \rangle = \int_{-1}^{1} f(t) g(t) dt.
+    \]
+    Seja $W$ o espaço vetorial gerado por $\{f_1, f_2, f_3\}$, onde $f_i(t) = t^i$. Obtenha uma base ortonormal para $W$.
+    
+\begin{solution} 
+    Se vamos construir uma base ortonormal, então vamos usar $Gram-Schmidt$.
+    
+    Sabemos que $\{t,t^{2}, t^{3}\}$ formam uma base. Vamos construir uma base $\{b_{1}, b_{2}, b_{3}\}$ ortogonal.
+    
+    Seguindo Gram-Schmdit que está na notas de aula: Então vamos primeiro normalizar $t$, isto é, vamos ver como fazer "$t$" participar da nossa base ortonormal. $||t||^{2} = \langle t,t\rangle = \frac{t^{3}}{3}|^{1}_{-1} = \frac{2}{3}$. Logo, o primeiro elemento da nossa base vai ser $\frac{\sqrt{6}}{2}t$
+    
+    Agora por Gram-Schmidt, o segundo elemnto vai ser $b_{2} = t^{2} +\lambda b_{1}$ com $\lambda = -\frac{\langle b_{1}, t^{2}\rangle }{\langle b_{1}, b_{1}\rangle}$.
+    
+    
+    $langle b_{1}, t^{2}\rangle - \int_{-1}^{1}t\cdot t^{2} = \int_{-1}^{1}t^{3} = \frac{t^{4}}{4} = 0$.
+    
+    E $||t^{2}||^{2} = \int^{1}_{-1} t^{4}dt = \frac{t^{5}}{5}|_{-1}^{1} = \frac{2}{5}$. Então $\frac{t^{2}}{||t^{2}||} = \sqrt{\frac{5}{2}}t^{2} = \frac{\sqrt{10}}{2}t^{2}$
+    
+    
+    Terceiro membros da base é $b_{3} = t^{3} + \mu b_{2} + \alpha b_{1}$ com  $\mu = - \frac{\langle b_{2},t^{3} \rangle}{\langle b_{2}, b_{2}\rangle}$, $\alpha = -\frac{\langle b_{1}, t^{3}\rangle }{\langle b_{1}, b_{1}\rangle}$
+    
+    Logo, $\langle b_{2},t^{3} \rangle = \int^{1}_{-1}t^{2}t^{3} = \int_{-1}^{1}t^{5}dt = \frac{t^{6}}{6} = 0$. Portanto, $\mu = 0$.
+    
+    Temos também $\langle b_{1}, t^{3}\rangle = \int^{1}_{-1}t^{4} = \frac{t^{5}}{5} = \frac{2}{5}$, Mas $\langle b_{1}, b_{1}\rangle = \frac{2}{3}$. Logo, $\alpha = \frac{3}{5}$.
+    
+  Agora precisamos calcular $||b_{3}||^{2} = \int^{1}_{-1} (x^{3}- \frac{3}{5}x)^{2}dx = \frac{8}{175}$
+    
+    Portanto, uma base ortonormal seria $B = \{\frac{t\sqrt{6}}{2}, t^{2}\frac{\sqrt{10}}{5}, \frac{x^{3}- \frac{3}{5}x\sqrt{1400}}{8} \}$
+    
+    \end{solution}
+    
+    \question[] Seja $\{x_1, x_2, x_3\}$ uma base ortonormal de $\mathbb{R}^3$. A transformação linear $A: \mathbb{R}^3 \to \mathbb{R}^3$ tem a propriedade de que
+    \begin{align*}
+        Ax_1 &= x_1 + 2x_2 + 3x_3, \\
+        Ax_2 &= x_2 + x_3, \\
+        Ax_3 &= x_1 + x_3.
+    \end{align*}
+    Escreva $A^* x_1, A^* x_2, A^* x_3$ em termos da base $\{x_1, x_2, x_3\}$, onde $A^*$ é a transformação adjunta de $A$.
+    
+\begin{solution}
+    
+    Primeiro relembre que $\langle Ax, y \rangle = \langle x, A^{*}y\rangle$ por definição.
+    
+    Além disso, note que $\langle x_{i},x_{j} \rangle = 0$ para $i\neq j$ pelo fato da base $\{x_{1}, x_{2},x_{3}\}$ ser ortonormal.
+    
+    Queremos escrever $A^{*}x_{1} = \lambda_{1} x_{1} + \lambda_{2} x_{2} + \lambda_{3} x_{3}$.
+    
+    $A^{*}x_{2} = \omega_{1} x_{1} + \omega_{2} x_{2} + \omega_{3} x_{3}$.
+    
+    $A^{*}x_{3} = \alpha_{1} x_{1} + \alpha_{2} x_{2} + \alpha_{3} x_{3}$.
+    
+    Nosso, objetivo é achar os $\lambda$, $\omega$ e $\alpha$.
+    
+    Note que $\langle Ax_{i}, x_{j} \rangle = \langle x_{i}, A^{*}x_{j} \rangle = \langle x_{i}, \sum \lambda_{j}x_{j}\rangle = \lambda_{i}$. Ou seja, se eu quiser descobrir o coeficiente de $x_{i}$ que aparece em $A^{*}x_{j}$, eu tenho que fazer $\langle Ax_{i}, x_{j}\rangle$.
+    
+    Portanto, $\langle Ax_{1}, x_{1} \rangle = 1$, $\langle Ax_{1}, x_{2} \rangle = 2$, $\langle Ax_{1}, x_{3} \rangle = 3$.
+    
+    $\langle Ax_{2}, x_{1} \rangle = 0$, $\langle Ax_{2}, x_{2} \rangle = 1$, $\langle Ax_{2}, x_{3} \rangle = 1$.
+    
+    E $\langle Ax_{3}, x_{1} \rangle = 1$, $\langle Ax_{3}, x_{2} \rangle = 0$ e $\langle Ax_{3}, x_{3} \rangle = 1$.
+    
+    $\langle Ax_{i}, x_{i} \rangle = \langle x_{i}, A^{*}x_{i}$.
+    
+    Concluímos, $A^{*}x_1 = x_1 + x_3$, $A^{*}x_2 = 2x_1 + x_3$ e $A^{*}x_3 = 3x_{1}+x_2 +x_3$.
+    
+    Outra solução para essa questão é montar a matriz $A$ é transpor, pois $A^{*} = A^{t}$.
+    \end{solution}
+    
+    
+    \question[] Se $e_1, e_2, \dots, e_m$ é ortogonal e $e_i \neq 0$ para $1 \leq i \leq m$, então $e_1, e_2, \dots, e_m$ é linearmente independente.
+    
+\begin{solution}Solução igual a da 7.    \end{solution}
+    
+     \question[] Seja $E$ um espaço Euclidiano, e seja $M \subset E$. Defina
+    \[
+        M^\perp := \{ y \in E \mid \langle x, y \rangle = 0 \text{ para todo } x \in M \},
+    \]
+    o subconjunto de todos os vetores ortogonais a todos os vetores de $M$. Mostre que $M^\perp$ é um subespaço vetorial de $E$.
+    
+    \begin{solution} Sejam $y,z \in M^{\perp}$ e $\lambda \in K$. $\langle y+\lambda z, x\rangle = \langle y,z \rangle + \lambda \langle z,x\rangle = 0 +\lambda 0 =0 $. Logo, $y+\lambda z \in M^{\perp}$. \end{solution}
+
+    
+    \question[] Seja $E$ um espaço Euclidiano e seja $M$ um subespaço vetorial de $E$. Verifique que $E = M \oplus M^\perp$.
+    
+    \begin{solution}Relembre que $X = Y \oplus Z \iff Y\cap Z = \{0\}$ e $Y+Z = X$.
+
+Se $m\in M\cap M^{\perp}$, então $\langle m, m\rangle = 0$, logo $m = 0$.
+
+Agora seja $B = \{m_{1},\ldots, m_{k}\}$ uma base ortonormal de $M$. Agora seja $B' = \{m_{1},\ldots, m_{n}\}$ uma base ortonormal de $E$ contendo $B$.
+
+Seja $x \in X$, logo $x = \sum_{i = 1}^{n}\lambda_{i}m_{i} = \sum_{i=1}^{k}\lambda m_{i} + \sum_{j = k+1}^{n}\lambda_{j}w_{j}$. Segue que  $\sum_{i=1}^{k}\lambda m_{i} \in M$ e $\sum_{j = k+1}^{n}\lambda_{j}wm{j} \in M^{\perp}$, pois $\langle m_{i},m_{j}\rangle = 0$ pelo fato da base ser ortonormal.
+
+Portanto, $E = M + M^{\perp}$. Concluindo o resultado que queríamos. \end{solution}
+    
+    \question[] Seja $S$ um subconjunto de $X$, um espaço com produto interno. Mostre que $S^\perp = [S]^\perp$.
+    
+    \begin{solution}Quando queremos mostrar que dois conjuntos são iguais, nossa estratégia vai ser mostrar que um está contido no outro.
+
+$(S^{\perp}\subset [S]^{\perp})$ Seja $x \in S^{\perp}$, então $\langle x,y\rangle = 0$ para todo $y \in S$. Seja $z \in [S]$, então $z = \sum \lambda_{i}y_{i}$ com $y_{i} \in S$ e $\lambda_{i} \in K$ para todo $i$.
+
+Daí, $\langle x, z \rangle = \sum \lambda_{i} \langle x,y_{i}\rangle$. Mas por definição de $S^{\perp}$, $\langle x,y_{i}\rangle = 0$ para todo i.
+
+Portanto, $x \in [S]^{\perp}$.
+
+$([S]^{\perp} \subset S^{\perp})$ Agora, tome $x \in [S]^{\perp}$ e $y \in S$, logo $y \in [S]$ o que implica que $\langle x,y \rangle = 0$, portanto $x \in S^{\perp}$. \end{solution}
+    
+    \question[] Seja $S$ um subconjunto de $X$, um espaço com produto interno. Defina
+    \[
+        S^{\perp\perp} = (S^\perp)^\perp.
+    \]
+    Mostre que $[S] \subset S^{\perp\perp}$. Se $X$ tem dimensão finita, demonstre que $[S] = S^{\perp\perp}$.
+    
+    \begin{solution}Seja $s \in [S]$ e $s'\in S^{\perp}$. Como $s \in [S]$, então $s = \sum \lambda_{i} s_{i}$ com $s_{i} \in S$ para todo $i$ e $\lambda_{i} \in K$. Então, $\langle s,s'\rangle = \langle \sum_{i}\lambda s_{i},s'\rangle = \sum \lambda_{i} \langle s_{i},s' \rangle = 0$, pois $\langle s_{i},s'\rangle = 0$ por definiçõa de $s_{i}$ e $s'$. Mas isso implica também que se $s \in (S^{\perp})^{\perp}$, pois $s'$ é um elemento qualquer de $S^{\perp}$.
+
+Se tem dimensão finita então $X = S \oplus S^{\perp} = (S^{\perp})^{\perp}\oplus S^{\perp}$. Mas então $\dim S = \dim (S^{\perp})^{\perp}$, $S \subset (S^{\perp})^{\perp}$. Daí, eles tem que ser iguais.  \end{solution}
+    
+    \question[] Seja $X$ um espaço com produto interno e seja $A: X \to X$ uma transformação linear sobrejetiva com a propriedade de que $\langle x, y \rangle = \langle Ax, Ay \rangle$ para todos $x, y \in X$. Demonstre que
+    \[
+        A(U^\perp) = A(U)^\perp
+    \]
+    para todo subconjunto $U \subset X$.
+    
+\begin{solution}$(A(U^{\perp}) \subset A(U)^{\perp})$ Seja $x \in A(U^{\perp})$, então existe $z \in U^{\perp}$ tal que $A(z) = x$. Seja $y \in A(U)$, então $y = A(w)$ para algum $w \in U$. $\langle x,y \rangle = \langle z, w \rangle  = 0$ pela definição de $z$. Logo, $x \in A(U)^{\perp}$.
+
+$(A(U)^{\perp} \subset A(U^{\perp}))$ Sejam $x \in A(U)^{\perp}$ e $y \in A(U)$. Logo, existe $w \in U$ tal que $A(w) = y$. Por outro lado, $A$ é sobrejetiva, então existe $z$ tal que $z \in U$ e $A(z) = x$. Temos que $0 = \langle x,y \rangle = \langle z, w \rangle$ Portanto, $z \in U^{\perp}$ e $x \in A(U^{\perp})$. \end{solution}    
+    
+    \question[] Seja $M$ um subespaço vetorial do espaço Euclidiano $X$, invariante sob a transformação linear $T: X \to X$, isto é, $T(M) \subset M$. Mostre que $M^\perp$ é invariante sob a adjunta $T^*$.
+
+\begin{solution} $\langle Tm, y \rangle = \langle m, T^{*}y \rangle$
+
+Se $y \in M^{\perp}$, então $0 = \langle Tm, y \rangle = \langle m, T^{*}y \rangle$. Logo $T^{*}y \in M^{\perp}$. \end{solution}
+
+    
+    \question[] Seja $X$ um espaço Euclidiano, e seja $T: X \to X$ uma transformação linear. Mostre que $\operatorname{ran}(A)^\perp = \ker(A^*)$.
+    
+    \begin{solution}$(ran(A)^{\perp} \subset \ker (A^{*})$ Seja $x \in ran(A)^{\perp}$, então $\langle x, y \rangle = 0$ para todo $y \in ran(A)$. Mas $y \in ran(A)$, existe $z \in X$ tal que $A(z) = y$. Logo, $\langle x,A(z) \rangle = 0$.
+
+Portanto, $\langle A^{*}x,z\rangle = 0$. Mas note que isso vale para todo $y \in ran(A)$, em particular vale para $y = A(A^{*}(x))$, o que implica em $z = A^{*}(x)$ na expressão anterior. Logo, $\langle A^{*}(x), A^{*}(x) \rangle = 0$, o que só ocorre $A^{*}(x) =0$, o que é o mesmo que $x \in \ker A^{*}$.
+
+$(\ker (A^{*}) \subset ran(A)^{\perp})$ Seja $x \in \ker(A^{*})$, logo $A^{*}(x) = 0$. Seja $y\in A$, temos que $\langle x, A(y) \rangle = \langle A^{*}(x), y \rangle = 0$. Logo, $x \in ran(A)^{\perp}$ \end{solution}
+    
+\end{questions}
+
+\end{document}
